@@ -65,11 +65,11 @@ Tab:Toggle("", false, function(Value)
             AutoHoop()
         wait(0.1)
     end
-end
+end)
 
 for _, v in pairs(game.ReplicatedStorage.chestRewards:GetChildren()) do
     game.ReplicatedStorage.rEvents.checkChestRemote:InvokeServer(v.Name)
-end）
+end
 
 local Tab = win:Tab("传送功能")
 
