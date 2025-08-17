@@ -57,6 +57,20 @@ Tab:Toggle("无限重生", false, function(Value)
     end
 end)
 
+Tab:Toggle("", false, function(Value)
+    autoRebirth = Value
+    while autoRebirth do
+     autoHoop = Value
+        if Value then
+            AutoHoop()
+        wait(0.1)
+    end
+end
+
+for _, v in pairs(game.ReplicatedStorage.chestRewards:GetChildren()) do
+    game.ReplicatedStorage.rEvents.checkChestRemote:InvokeServer(v.Name)
+end）
+
 local Tab = win:Tab("传送功能")
 
 Tab:Button("城市", function()
@@ -219,6 +233,61 @@ Tab:Toggle("紫色水晶", false, function(Value)
     autoRebirth = Value
     while autoRebirth do
      game:GetService('ReplicatedStorage').rEvents.openCrystalRemote:InvokeServer("openCrystal", "Purple Crystal")
+        wait(0.1)
+    end
+end)
+
+Tab:Toggle("黄色水晶", false, function(Value)
+    autoRebirth = Value
+    while autoRebirth do                  game:GetService('ReplicatedStorage').rEvents.openCrystalRemote:InvokeServer("openCrystal", "Yellow Crystal")
+        wait(0.1)
+    end
+end)
+
+Tab:Toggle("闪电水晶", false, function(Value)
+    autoRebirth = Value
+    while autoRebirth do
+     game:GetService('ReplicatedStorage').rEvents.openCrystalRemote:InvokeServer("openCrystal", "Lightning Crystal")
+        wait(0.1)
+    end
+end)
+
+Tab:Toggle("白雪水晶", false, function(Value)
+    autoRebirth = Value
+    while autoRebirth do
+     game:GetService('ReplicatedStorage').rEvents.openCrystalRemote:InvokeServer("openCrystal", "Snow Crystal")
+        wait(0.1)
+    end
+end)
+
+Tab:Toggle("地狱水晶", false, function(Value)
+    autoRebirth = Value
+    while autoRebirth do
+     game:GetService('ReplicatedStorage').rEvents.openCrystalRemote:InvokeServer("openCrystal", "Inferno Crystal")
+        wait(0.1)
+    end
+end)
+
+Tab:Toggle("外星人水晶", false, function(Value)
+    autoRebirth = Value
+    while autoRebirth do
+     game:GetService('ReplicatedStorage').rEvents.openCrystalRemote:InvokeServer("openCrystal", "Alien Crystal")
+        wait(0.1)
+    end
+end)
+
+Tab:Toggle("沙漠水晶", false, function(Value)
+    autoRebirth = Value
+    while autoRebirth do
+     game:GetService('ReplicatedStorage').rEvents.openCrystalRemote:InvokeServer("openCrystal", "Desert Crystal")
+        wait(0.1)
+    end
+end)
+
+Tab:Toggle("电子水晶", false, function(Value)
+    autoRebirth = Value
+    while autoRebirth do
+     game:GetService('ReplicatedStorage').rEvents.openCrystalRemote:InvokeServer("openCrystal", "Electro Crystal")
         wait(0.1)
     end
 end)
