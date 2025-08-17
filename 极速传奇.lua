@@ -57,22 +57,23 @@ Tab:Toggle("无限重生", false, function(Value)
     end
 end)
 
+-- 自动刷圈开关
 Tab:Toggle("刷圈", false, function(Value)
     autoRebirth = Value
-    while autoRebirth do
-        autoHoop = Value
-        if Value then
-            AutoHoop()
-        end
-    end
-})
-
-for _, v in pairs(game.ReplicatedStorage.chestRewards:GetChildren()) do
-    game.ReplicatedStorage.rEvents.checkChestRemote:InvokeServer(v.Name)
-end
-        wait(0.1)
+    autoHoop = Value  -- 确保状态同步
+    
+    -- 自动刷圈主循环
+    while autoRebirth and autoHoop do
+        AutoHoop()
+        wait(0.1)  -- 必须添加延迟防止卡死
     end
 end)
+
+-- 开启所有宝箱（独立功能，只执行一次）
+for _, v in pairs(game.ReplicatedStorage.chestRewards:GetChildren()) do
+    game.ReplicatedStorage.rEvents.checkChestRemote:InvokeServer(v.Name)
+    wait(0.1)  -- 添加延迟防止请求过快
+end
 
 local Tab = win:Tab("传送功能")
 
