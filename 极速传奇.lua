@@ -57,23 +57,47 @@ Tab:Toggle("无限重生", false, function(Value)
     end
 end)
 
+-- 确保这些变量在全局作用域声明（如果需要）
+local autoRebirth = false
+local autoHoop = false
+
+-- 定义实际的刷圈功能函数
+function AutoHoop()
+    -- 这里添加具体的刷圈逻辑
+    -- 示例：点击刷圈按钮（根据实际游戏UI调整）
+    local success, err = pcall(function()
+        game:GetService("ReplicatedStorage").rEvents.hoopEvent:FireServer("swish")
+    end)
+    
+    if not success then
+        warn("刷圈失败:", err)
+    end
+end
+
 -- 自动刷圈开关
 Tab:Toggle("刷圈", false, function(Value)
     autoRebirth = Value
-    autoHoop = Value  -- 确保状态同步
+    autoHoop = Value
     
-    -- 自动刷圈主循环
-    while autoRebirth and autoHoop do
-        AutoHoop()
-        wait(0.1)  -- 必须添加延迟防止卡死
-    end
+    -- 启动刷圈协程
+    coroutine.wrap(function()
+        while autoRebirth and autoHoop do
+            AutoHoop()
+            wait(0.5)  -- 根据游戏要求调整延迟
+        end
+    end)()
 end)
 
--- 开启所有宝箱（独立功能，只执行一次）
-for _, v in pairs(game.ReplicatedStorage.chestRewards:GetChildren()) do
-    game.ReplicatedStorage.rEvents.checkChestRemote:InvokeServer(v.Name)
-    wait(0.1)  -- 添加延迟防止请求过快
-end
+-- 开启所有宝箱（独立功能）
+coroutine.wrap(function()
+    wait(1)  -- 延迟确保游戏加载完成
+    for _, v in pairs(game:GetService("ReplicatedStorage").chestRewards:GetChildren()) do
+        pcall(function()
+            game:GetService("ReplicatedStorage").rEvents.checkChestRemote:InvokeServer(v.Name)
+        end)
+        wait(0.2)  -- 防止请求过快
+    end
+end)()
 
 local Tab = win:Tab("传送功能")
 
