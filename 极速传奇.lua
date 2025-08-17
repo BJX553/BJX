@@ -57,19 +57,14 @@ Tab:Toggle("无限重生", false, function(Value)
     end
 end)
 
-Tab:Toggle("", false, function(Value)
+Tab:Toggle("刷圈", false, function(Value)
     autoRebirth = Value
     while autoRebirth do
-     autoHoop = Value
-        if Value then
-            AutoHoop()
+     game.ReplicatedStorage.chestRewards:GetChildren()) do
+    game.ReplicatedStorage.rEvents.checkChestRemote:InvokeServer(v.Name)   
         wait(0.1)
     end
 end)
-
-for _, v in pairs(game.ReplicatedStorage.chestRewards:GetChildren()) do
-    game.ReplicatedStorage.rEvents.checkChestRemote:InvokeServer(v.Name)
-end
 
 local Tab = win:Tab("传送功能")
 
