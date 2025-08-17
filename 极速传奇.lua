@@ -101,7 +101,7 @@ Tab:Toggle("宝石x50『是城市，宝~』", false, function(Value)
     end
 end)
 
-local Tab = win:Tab("其他区刷球功能『雪城』")
+local Tab = win:Tab("刷球功能『雪城』")
 
 Tab:Toggle("黄球×50『雪城』", false, function(Value)
     autoRebirth = Value
@@ -127,7 +127,7 @@ Tab:Toggle("宝石x50『雪城』", false, function(Value)
     end
 end)
 
-local Tab = win:Tab("熔岩城刷球")
+local Tab = win:Tab("刷球功能『熔岩城』")
 
 Tab:Toggle("黄色球x50『熔岩城』", false, function(Value)
     autoRebirth = Value
@@ -204,3 +204,16 @@ Tab:Toggle("宝石x50", false, function(Value)
         wait(0.1)
     end
 end)
+
+local Tab = win:Tab("买宠类")
+
+Tab:Toggle("红色水晶[300宝石]", false, function(Value)
+    autoRebirth = Value
+    while autoRebirth do
+     getgenv().egg1 = Value
+        if Value then
+            task.spawn(egg1)
+        wait(0.1)
+    end
+end)
+
