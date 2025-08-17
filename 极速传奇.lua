@@ -60,8 +60,16 @@ end)
 Tab:Toggle("刷圈", false, function(Value)
     autoRebirth = Value
     while autoRebirth do
-     game.ReplicatedStorage.chestRewards:GetChildren()) do
-    game.ReplicatedStorage.rEvents.checkChestRemote:InvokeServer(v.Name)   
+        autoHoop = Value
+        if Value then
+            AutoHoop()
+        end
+    end
+})
+
+for _, v in pairs(game.ReplicatedStorage.chestRewards:GetChildren()) do
+    game.ReplicatedStorage.rEvents.checkChestRemote:InvokeServer(v.Name)
+end
         wait(0.1)
     end
 end)
