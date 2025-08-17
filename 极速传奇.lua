@@ -207,13 +207,18 @@ end)
 
 local Tab = win:Tab("买宠类")
 
-Tab:Toggle("红色水晶[300宝石]", false, function(Value)
+Tab:Toggle("红色水晶", false, function(Value)
     autoRebirth = Value
     while autoRebirth do
-     getgenv().egg1 = Value
-        if Value then
-            task.spawn(egg1)
+     game:GetService('ReplicatedStorage').rEvents.openCrystalRemote:InvokeServer("openCrystal", "Red Crystal")
         wait(0.1)
     end
 end)
 
+Tab:Toggle("紫色水晶", false, function(Value)
+    autoRebirth = Value
+    while autoRebirth do
+     game:GetService('ReplicatedStorage').rEvents.openCrystalRemote:InvokeServer("openCrystal", "Purple Crystal")
+        wait(0.1)
+    end
+end)
