@@ -1,14 +1,14 @@
 local library = loadstring(game:HttpGet('https://raw.githubusercontent.com/DesrtKnock/DesrtKnock-X/refs/heads/main/notification.lua'))()
 
-local bai = {
-    axedupe = false,
-    soltnumber = "1",
-    waterwalk = false,
-    awaysday = false,
-    awaysdnight = false,
-    nofog = false,
-    axeflying = false,
-    playernamedied = "",
+本地bai = {
+axedupe = false，
+soltnumber = "1 "，
+水上漫步=假，
+awaysday = false，
+awaysdnight = false，
+nofog = false，
+axeflying = false，
+playernamedied = " "，
     tptree = "",
     moneyaoumt = 1,
     moneytoplayername = "",
@@ -49,15 +49,15 @@ local bai = {
     whthmose = false,
     itemset = nil,
     LoneCaveAxeDetection = nil,
-    cuttree = false,
-    LoneCaveCharacterAddedDetection = nil,
-    LoneCaveDeathDetection = nil,
-    lovecavecutcframe = nil,
-    lovecavepast = nil,
-    zlmt = nil,
-    shuzhe = false,
-    modwood = false,
-    tchonmt = nil,
+cuttree = false，
+LoneCaveCharacterAddedDetection = nil,
+LoneCaveDeathDetection = nil,
+lovecavecutcframe = nil,
+lovecavepast = nil,
+zlmt = nil,
+shuzhe = false,
+modwood = false,
+tchonmt = nil,
     cskais = false,
     dledetree = false,
     delereeset = nil,
@@ -288,7 +288,7 @@ function teleportTo(CFrame)
 end
 wait(0.1)
 shuaxinlb(true)
-local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/zilinskaslandon/glkk/refs/heads/main/OrionLib.txt')))()
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/BJX553/BJX/refs/heads/main/OrionLib.lua')))()
 local Window = OrionLib:MakeWindow({IntroText = "北极星脚本中心V4",Name = " 丨北极星脚本中心丨V4 执行器:" ..identifyexecutor() , HidePremium = false, SaveConfig = true, ConfigFolder = ""})
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 local Tab = Window:MakeTab({
