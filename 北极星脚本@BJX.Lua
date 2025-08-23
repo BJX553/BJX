@@ -2545,7 +2545,7 @@ OPOTab:AddButton({
   	end    
 })
 
-SettingsTab:AddButton({
+OPOTab:AddButton({
 	Name = "北极星doors",
 	Callback = function()
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/zilinskaslandon/-/refs/heads/main/doors.lua"))()
@@ -15197,7 +15197,7 @@ local Tab = Window:MakeTab({
 	PremiumOnly = false
 })
 
-SettingsTab:AddButton({
+Tab:AddButton ({
 	Name = "制作一架飞机-中文",
 	Callback = function()
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/BJX553/BJX/refs/heads/main/%E5%BB%BA%E9%80%A0%E4%B8%80%E9%A9%BE%E9%A3%9E%E6%9C%BA.lua"))()
@@ -15210,7 +15210,7 @@ local Tab = Window:MakeTab({
 	PremiumOnly = false
 })
 
-SettingsTab:AddButton({
+Tab:AddButton ({
 	Name = "99夜~中文北极星",
 	Callback = function()
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/BJX553/BJX/refs/heads/main/99night.lua"))()
@@ -15223,7 +15223,7 @@ local Tab = Window:MakeTab({
 	PremiumOnly = false
 })
 
-SettingsTab:AddButton({
+Tab:AddButton ({
 	Name = "元素力量-功能较多",
 	Callback = function()
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/BJX553/BJX/refs/heads/main/%E5%85%83%E7%B4%A0%E5%8A%9B%E9%87%8F%E5%A4%A7%E4%BA%A8.lua"))()
@@ -15236,7 +15236,7 @@ local Tab = Window:MakeTab({
 	PremiumOnly = false
 })
 
-SettingsTab:AddButton({
+Tab:AddButton ({
 	Name = "种植花园-功能多",
 	Callback = function()
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/BJX553/BJX/refs/heads/main/%E8%8A%B1%E5%9B%AD.lua"))()
@@ -15249,7 +15249,7 @@ local Tab = Window:MakeTab({
 	PremiumOnly = false
 })
 
-SettingsTab:AddButton({
+Tab:AddButton ({
 	Name = "在超市生活一周~中文",
 	Callback = function()
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/BJX553/BJX/refs/heads/main/%E5%9C%A8%E8%B6%85%E5%B8%82%E7%94%9F%E6%B4%BB%E4%B8%80%E5%91%A8.lua"))()
@@ -15262,7 +15262,7 @@ local Tab = Window:MakeTab({
 	PremiumOnly = false
 })
 
-SettingsTab:AddButton({
+Tab:AddButton ({
 	Name = "无限刷",
 	Callback = function()
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/BJX553/BJX/refs/heads/main/%E5%87%B9%E5%87%B8%E4%B8%96%E7%95%8C.lua"))()
@@ -15275,7 +15275,7 @@ local Tab = Window:MakeTab({
 	PremiumOnly = false
 })
 
-SettingsTab:AddButton({
+Tab:AddButton ({
 	Name = "北极星吃掉世界",
 	Callback = function()
 	loadstring(game:HttpGet("https://raw.githubusercontent.com/BJX553/BJX/refs/heads/main/%E5%90%83%E6%8E%89%E4%B8%96%E7%95%8C.lua"))()
