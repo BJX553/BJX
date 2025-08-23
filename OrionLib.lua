@@ -504,12 +504,12 @@ function OrionLib:MakeWindow(WindowConfig)
         if WindowConfig.IntroEnabled == nil then
                 WindowConfig.IntroEnabled = true
         end
-    WindowConfig.IntroToggleIcon = WindowConfig.IntroToggleIcon or "rbxassetid://90573503294414"
+    WindowConfig.IntroToggleIcon = WindowConfig.IntroToggleIcon or "rbxassetid://102717847375281"
         WindowConfig.IntroText = WindowConfig.IntroText or "BJX脚本中心."
         WindowConfig.CloseCallback = WindowConfig.CloseCallback or function() end
         WindowConfig.ShowIcon = WindowConfig.ShowIcon or false
-        WindowConfig.Icon = WindowConfig.Icon or "rbxassetid://90573503294414"
-        WindowConfig.IntroIcon = WindowConfig.IntroIcon or "rbxassetid://90573503294414"
+        WindowConfig.Icon = WindowConfig.Icon or "rbxassetid://102717847375281"
+        WindowConfig.IntroIcon = WindowConfig.IntroIcon or "rbxassetid://102717847375281"
         OrionLib.Folder = WindowConfig.ConfigFolder
         OrionLib.SaveCfg = WindowConfig.SaveConfig
 
@@ -675,7 +675,7 @@ function OrionLib:MakeWindow(WindowConfig)
                 BackgroundColor3 = OrionLib.Themes[OrionLib.SelectedTheme].Main,
                 Visible = false
         }), {
-                AddThemeObject(SetProps(MakeElement("Image", WindowConfig.IntroToggleIcon or "http://www.roblox.com/asset/?id=90573503294414"), {
+                AddThemeObject(SetProps(MakeElement("Image", WindowConfig.IntroToggleIcon or "http://www.roblox.com/asset/?id=102717847375281"), {
                         AnchorPoint = Vector2.new(0.5, 0.5),
                         Position = UDim2.new(0.5, 0, 0.5, 0),
                         Size = UDim2.new(0.7, 0, 0.7, 0),
