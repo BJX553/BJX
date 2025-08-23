@@ -15222,3 +15222,42 @@ Tab:AddButton({
 loadstring(game:HttpGet("https://raw.githubusercontent.com/BJX553/BJX/refs/heads/main/%E5%BB%BA%E9%80%A0%E4%B8%80%E9%A9%BE%E9%A3%9E%E6%9C%BA.lua"))()
   end
 })
+
+local Tab = Window:MakeTab({
+	Name = "在超市生活一周",
+	Icon = "rbxassetid://78892482588180",
+	PremiumOnly = false
+})
+
+Tab:AddButton({
+  Name = "在超市生活一周~中文功能多",
+  Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/BJX553/BJX/refs/heads/main/%E5%9C%A8%E8%B6%85%E5%B8%82%E7%94%9F%E6%B4%BB%E4%B8%80%E5%91%A8.lua"))()
+  end
+})
+
+local Tab = Window:MakeTab({
+	Name = "凹凸世界",
+	Icon = "rbxassetid://78892482588180",
+	PremiumOnly = false
+})
+
+Tab:AddButton({
+  Name = "超快无限刷球",
+  Callback = function(Value)
+        AutoBallFarm = Value
+        if Value then
+            task.spawn(function()
+                while AutoBallFarm do
+                    local number_1 = 2
+                    local table_1 = { [1] = 1, [2] = 1, [3] = 19 }
+                    local Target = game:GetService("ReplicatedStorage").Project.RemoteEvent.ControlMessageEvent
+                    Target:FireServer(number_1, table_1)
+                    wait()
+                end
+            end)
+        end
+    end
+})
+  end
+})
