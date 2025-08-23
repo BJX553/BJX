@@ -1,4 +1,4 @@
-game:GetService("StarterGui"):SetCore("SendNotification", {Title = "BJX脚本中心UI";Text = "验证中……";Icon = "rbxassetid://90573503294414"})Duration = 8;
+game:GetService("StarterGui"):SetCore("SendNotification", {Title = "BJX脚本中心UI";Text = "验证中……";Icon = "rbxassetid://102717847375281"})Duration = 8;
     local sound = Instance.new("Sound", workspace)
 sound.SoundId = "rbxassetid://6647898215"
 sound:Play()
