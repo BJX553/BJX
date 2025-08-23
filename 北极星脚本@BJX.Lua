@@ -11044,13 +11044,6 @@ SettingsTab:AddButton({
 	end    
 })
 
-Tab:AddButton ({
-	Name = "北极星极速传奇",
-	Callback = function()
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/BJX553/BJX/refs/heads/main/%E6%9E%81%E9%80%9F%E4%BC%A0%E5%A5%87.lua"))()
-	end
-})
-
 local Tab = Window:MakeTab({
 	Name = "巴掌模拟器",
 	Icon = "rbxassetid://78892482588180",
