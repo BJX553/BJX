@@ -2545,6 +2545,13 @@ OPOTab:AddButton({
   	end    
 })
 
+SettingsTab:AddButton({
+	Name = "北极星doors",
+	Callback = function()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/zilinskaslandon/-/refs/heads/main/doors.lua"))()
+	end
+})
+
 OPOTab:AddButton({
 	Name = "BobHUB",
 	Callback = function()
@@ -11037,6 +11044,13 @@ SettingsTab:AddButton({
 	end    
 })
 
+SettingsTab:AddButton({
+	Name = "北极星极速传奇",
+	Callback = function()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/BJX553/BJX/refs/heads/main/%E6%9E%81%E9%80%9F%E4%BC%A0%E5%A5%87.lua"))()
+	end
+})
+
 local Tab = Window:MakeTab({
 	Name = "巴掌模拟器",
 	Icon = "rbxassetid://78892482588180",
@@ -15174,5 +15188,96 @@ end
 end
 end
 end)
+	end
+})
+
+local Tab = Window:MakeTab({
+	Name = "制作一架飞机",
+	Icon = "rbxassetid://78892482588180",
+	PremiumOnly = false
+})
+
+SettingsTab:AddButton({
+	Name = "制作一架飞机-中文",
+	Callback = function()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/BJX553/BJX/refs/heads/main/%E5%BB%BA%E9%80%A0%E4%B8%80%E9%A9%BE%E9%A3%9E%E6%9C%BA.lua"))()
+	end
+})
+
+local Tab = Window:MakeTab({
+	Name = "森林中的99夜🔦",
+	Icon = "rbxassetid://78892482588180",
+	PremiumOnly = false
+})
+
+SettingsTab:AddButton({
+	Name = "99夜~中文北极星",
+	Callback = function()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/BJX553/BJX/refs/heads/main/99night.lua"))()
+	end
+})
+
+local Tab = Window:MakeTab({
+	Name = "元素力量大亨",
+	Icon = "rbxassetid://78892482588180",
+	PremiumOnly = false
+})
+
+SettingsTab:AddButton({
+	Name = "元素力量-功能较多",
+	Callback = function()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/BJX553/BJX/refs/heads/main/%E5%85%83%E7%B4%A0%E5%8A%9B%E9%87%8F%E5%A4%A7%E4%BA%A8.lua"))()
+	end
+})
+
+local Tab = Window:MakeTab({
+	Name = "种植花园",
+	Icon = "rbxassetid://78892482588180",
+	PremiumOnly = false
+})
+
+SettingsTab:AddButton({
+	Name = "种植花园-功能多",
+	Callback = function()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/BJX553/BJX/refs/heads/main/%E8%8A%B1%E5%9B%AD.lua"))()
+	end
+})
+
+local Tab = Window:MakeTab({
+	Name = "在超市生活一周",
+	Icon = "rbxassetid://78892482588180",
+	PremiumOnly = false
+})
+
+SettingsTab:AddButton({
+	Name = "在超市生活一周~中文",
+	Callback = function()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/BJX553/BJX/refs/heads/main/%E5%9C%A8%E8%B6%85%E5%B8%82%E7%94%9F%E6%B4%BB%E4%B8%80%E5%91%A8.lua"))()
+	end
+})
+
+local Tab = Window:MakeTab({
+	Name = "凹凸世界",
+	Icon = "rbxassetid://78892482588180",
+	PremiumOnly = false
+})
+
+SettingsTab:AddButton({
+	Name = "无限刷",
+	Callback = function()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/BJX553/BJX/refs/heads/main/%E5%87%B9%E5%87%B8%E4%B8%96%E7%95%8C.lua"))()
+	end
+})
+
+local Tab = Window:MakeTab({
+	Name = "吃掉世界",
+	Icon = "rbxassetid://78892482588180",
+	PremiumOnly = false
+})
+
+SettingsTab:AddButton({
+	Name = "北极星吃掉世界",
+	Callback = function()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/BJX553/BJX/refs/heads/main/%E5%90%83%E6%8E%89%E4%B8%96%E7%95%8C.lua"))()
 	end
 })
