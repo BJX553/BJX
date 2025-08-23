@@ -15259,5 +15259,3 @@ Tab:AddButton({
         end
     end
 })
-  end
-})
