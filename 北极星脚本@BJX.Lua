@@ -15184,3 +15184,41 @@ end)
 	end
 })
 
+local Tab = Window:MakeTab({
+	Name = "森林中的99夜🔦",
+	Icon = "rbxassetid://78892482588180",
+	PremiumOnly = false
+})
+
+Tab:AddButton({
+  Name = "99夜脚本",
+  Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/BJX553/BJX/refs/heads/main/99night.lua"))()
+  end
+})
+
+local Tab = Window:MakeTab({
+	Name = "种植花园",
+	Icon = "rbxassetid://78892482588180",
+	PremiumOnly = false
+})
+
+Tab:AddButton({
+  Name = "种植花园脚本",
+  Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/BJX553/BJX/refs/heads/main/%E8%8A%B1%E5%9B%AD.lua"))()
+  end
+})
+
+local Tab = Window:MakeTab({
+	Name = "制作一架飞机",
+	Icon = "rbxassetid://78892482588180",
+	PremiumOnly = false
+})
+
+Tab:AddButton({
+  Name = "制作一架飞机-中文",
+  Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/BJX553/BJX/refs/heads/main/%E5%BB%BA%E9%80%A0%E4%B8%80%E9%A9%BE%E9%A3%9E%E6%9C%BA.lua"))()
+  end
+})
