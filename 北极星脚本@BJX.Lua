@@ -290,6 +290,30 @@ wait(0.1)
 shuaxinlb(true)
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/BJX553/BJX/refs/heads/main/OrionLib.lua')))()
 local Window = OrionLib:MakeWindow({IntroText = "北极星脚本中心V4",Name = " 丨北极星脚本中心丨V4 执行器:" ..identifyexecutor() , HidePremium = false, SaveConfig = true, ConfigFolder = ""})
+
+local XuanTab = Window:MakeTab({
+	Name = "公告栏",
+	Icon = "rbxassetid://78892482588180",
+	PremiumOnly = false
+})
+
+XuanTab:AddParagraph("作者","小北")
+XuanTab:AddParagraph("源码提供","小玄奘")
+XuanTab:AddParagraph("脚本属于","半缝合")
+XuanTab:AddParagraph("特别感谢","小玄、冻梨、神青、风御")
+XuanTab:AddParagraph("北极星脚本","永久公益")
+
+XuanTab:AddButton ({
+	Name = "北极星脚本主群",
+	Callback = function ()
+	 setclipboard("985228498")
+	 OrionLib:MakeNotification({
+                    Name = "提示信息",
+                    Content = "已复制",
+                    Time = 3
+                })
+	end
+})
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 local Tab = Window:MakeTab({
 	Name = "自动发言",
@@ -1226,9 +1250,9 @@ Tab:AddButton({
 local Section = Tab:AddSection({	Name = "飞行"})
 
 Tab:AddButton ({
-Name = "XK飞行",
+Name = "北极星飞行",
   Callback = function ()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/BINjiaobzx6/BINjiao/main/%E9%A3%9E%E8%A1%8C%E8%84%9A%E6%9C%AC(%E5%8F%AF%E8%87%AA%E7%94%B1%E5%85%B3%E9%97%AD%E9%9A%90%E8%97%8F)%20%E6%B1%89%E5%8C%96%20(3)%20(1).txt"))()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/zilinskaslandon/-/refs/heads/main/%E5%8C%97%E6%9E%81%E6%98%9F%E9%A3%9E%E8%A1%8C.Lua"))()
   end
 })
 
