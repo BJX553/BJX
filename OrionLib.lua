@@ -508,8 +508,8 @@ function OrionLib:MakeWindow(WindowConfig)
         WindowConfig.IntroText = WindowConfig.IntroText or "BJX脚本中心."
         WindowConfig.CloseCallback = WindowConfig.CloseCallback or function() end
         WindowConfig.ShowIcon = WindowConfig.ShowIcon or false
-        WindowConfig.Icon = WindowConfig.Icon or "rbxassetid://121203363140066"
-        WindowConfig.IntroIcon = WindowConfig.IntroIcon or "rbxassetid://121203363140066"
+        WindowConfig.Icon = WindowConfig.Icon or "rbxassetid://90573503294414"
+        WindowConfig.IntroIcon = WindowConfig.IntroIcon or "rbxassetid://90573503294414"
         OrionLib.Folder = WindowConfig.ConfigFolder
         OrionLib.SaveCfg = WindowConfig.SaveConfig
 
