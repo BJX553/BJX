@@ -1,4 +1,4 @@
-game:GetService("StarterGui"):SetCore("SendNotification", {Title = "BJX脚本中心UI";Text = "验证中……";Icon = "rbxassetid://81268892239809"})Duration = 8;
+game:GetService("StarterGui"):SetCore("SendNotification", {Title = "BJX脚本中心UI";Text = "验证中……";Icon = "rbxassetid://90573503294414"})Duration = 8;
     local sound = Instance.new("Sound", workspace)
 sound.SoundId = "rbxassetid://6647898215"
 sound:Play()
@@ -504,7 +504,7 @@ function OrionLib:MakeWindow(WindowConfig)
         if WindowConfig.IntroEnabled == nil then
                 WindowConfig.IntroEnabled = true
         end
-        WindowConfig.IntroToggleIcon = WindowConfig.IntroToggleIcon or "rbxassetid://121203363140066"
+    WindowConfig.IntroToggleIcon = WindowConfig.IntroToggleIcon or "rbxassetid://90573503294414"
         WindowConfig.IntroText = WindowConfig.IntroText or "BJX脚本中心."
         WindowConfig.CloseCallback = WindowConfig.CloseCallback or function() end
         WindowConfig.ShowIcon = WindowConfig.ShowIcon or false
@@ -675,7 +675,7 @@ function OrionLib:MakeWindow(WindowConfig)
                 BackgroundColor3 = OrionLib.Themes[OrionLib.SelectedTheme].Main,
                 Visible = false
         }), {
-                AddThemeObject(SetProps(MakeElement("Image", WindowConfig.IntroToggleIcon or "http://www.roblox.com/asset/?id=121203363140066"), {
+                AddThemeObject(SetProps(MakeElement("Image", WindowConfig.IntroToggleIcon or "http://www.roblox.com/asset/?id=90573503294414"), {
                         AnchorPoint = Vector2.new(0.5, 0.5),
                         Position = UDim2.new(0.5, 0, 0.5, 0),
                         Size = UDim2.new(0.7, 0, 0.7, 0),
