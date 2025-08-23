@@ -535,7 +535,7 @@ function OrionLib:MakeWindow(WindowConfig)
                 Position = UDim2.new(0.5, 0, 0, 0),
                 BackgroundTransparency = 1
         }), {
-                AddThemeObject(SetProps(MakeElement("Image", "rbxassetid://81268892239809"), {
+                AddThemeObject(SetProps(MakeElement("Image", "rbxassetid://96669691935808"), {
                         Position = UDim2.new(0, 9, 0, 6),
                         Size = UDim2.new(0, 18, 0, 18)
                 }), "Text")
@@ -545,7 +545,7 @@ function OrionLib:MakeWindow(WindowConfig)
                 Size = UDim2.new(0.5, 0, 1, 0),
                 BackgroundTransparency = 1
         }), {
-                AddThemeObject(SetProps(MakeElement("Image", "rbxassetid://81268892239809"), {
+                AddThemeObject(SetProps(MakeElement("Image", "rbxassetid://89547331668158"), {
                         Position = UDim2.new(0, 9, 0, 6),
                         Size = UDim2.new(0, 18, 0, 18),
                         Name = "Ico"
@@ -588,7 +588,7 @@ function OrionLib:MakeWindow(WindowConfig)
                                 SetProps(MakeElement("Image", "https://www.roblox.com/headshot-thumbnail/image?userId=".. LocalPlayer.UserId .."&width=420&height=420&format=png"), {
                                         Size = UDim2.new(1, 0, 1, 0)
                                 }),
-                                AddThemeObject(SetProps(MakeElement("Image", "rbxassetid://81268892239809"), {
+                                AddThemeObject(SetProps(MakeElement("Image", "rbxassetid://4031889928"), {
                                         Size = UDim2.new(1, 0, 1, 0),
                                 }), "Second"),
                                 MakeElement("Corner", 1)
@@ -687,7 +687,7 @@ function OrionLib:MakeWindow(WindowConfig)
                 MainWindow.Visible = false
                 MobileReopenButton.Visible = true
                 UIHidden = true
-game:GetService("StarterGui"):SetCore("SendNotification", {Title = "BJX脚本中心";Text = "UI关闭成功";Icon = "rbxassetid://81268892239809"})Duration = 8;
+game:GetService("StarterGui"):SetCore("SendNotification", {Title = "BJX脚本中心";Text = "UI关闭成功";Icon = "rbxassetid://90573503294414"})Duration = 8;
     local sound = Instance.new("Sound", workspace)
 sound.SoundId = "rbxassetid://6647898215"
 sound:Play()
