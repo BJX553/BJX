@@ -291,7 +291,7 @@ shuaxinlb(true)
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/BJX553/BJX/refs/heads/main/OrionLib.lua')))()
 local Window = OrionLib:MakeWindow({IntroText = "北极星脚本中心V4",Name = " 丨北极星脚本中心丨V4 执行器:" ..identifyexecutor() , HidePremium = false, SaveConfig = true, ConfigFolder = ""})
 
-local Tab = Window:MakeTab({
+local XuanTab = Window:MakeTab({
 	Name = "公告栏",
 	Icon = "rbxassetid://78892482588180",
 	PremiumOnly = false
