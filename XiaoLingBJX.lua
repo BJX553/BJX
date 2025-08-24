@@ -1491,19 +1491,6 @@ XuanTab:AddButton ({
 	end
 })
 
-local Tab = Window:MakeTab({
-	Name = "北极星历代脚本",
-	Icon = "rbxassetid://78892482588180",
-	PremiumOnly = false
-})
-
-Tab:AddButton({
-  Name = "北极星脚本v3",
-  Callback = function()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/BJX553/BJX/refs/heads/main/BJX%E8%84%9A%E6%9C%AC%E4%B8%AD%E5%BF%83.lua"))()
-  end
-})
-
 local YINGPTab = Window:MakeTab({
 	Name = "音频",
 	Icon = "rbxassetid://78892482588180",
