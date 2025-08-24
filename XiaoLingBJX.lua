@@ -4303,6 +4303,14 @@ NBLLTab:AddButton({
   	end    
 })
 
+NBLLTab:AddButton({
+	Name = " 战争",
+	Callback = function()
+     loadstring(game:HttpGet("https://raw.githubusercontent.com/BJX553/BJX/refs/heads/main/%E6%88%98%E4%BA%89%E5%A4%A7%E4%BA%A8.lua"))()
+  	end    
+})
+
+
 local RNGTab = Window:MakeTab({
 	Name = " sol’sRNG",
 	Icon = "rbxassetid://78892482588180",
@@ -4320,13 +4328,6 @@ RNGTab:AddButton({
 	Name = " sol’sRNG",
 	Callback = function()
      loadstring(game:HttpGet("https://raw.githubusercontent.com/LOLking123456/upd/main/rng"))()
-  	end    
-})
-
-RNGTab:AddButton({
-	Name = " 战争",
-	Callback = function()
-     loadstring(game:HttpGet("https://raw.githubusercontent.com/BJX553/BJX/refs/heads/main/%E6%88%98%E4%BA%89%E5%A4%A7%E4%BA%A8.lua"))()
   	end    
 })
 
@@ -5326,9 +5327,9 @@ local Tab = Window:MakeTab({
 })
 
 Tab:AddButton({
-  Name = "脚本1",
+  Name = "北极星伐木脚本",
   Callback = function ()
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/frencaliber/LuaWareLoader.lw/main/luawareloader.wtf",true))()
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/zilinskaslandon/-/refs/heads/main/%E4%BC%90%E6%9C%A8%E8%84%9A%E6%9C%AC.Lua",true))()
   end
 })
 
