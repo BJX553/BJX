@@ -315,12 +315,6 @@ XuanTab:AddButton ({
 	end
 })
 
-local Tab = Window:MakeTab({
-	Name = "北极星历代脚本",
-	Icon = "rbxassetid://78892482588180",
-	PremiumOnly = false
-})
-
 Tab:AddButton({
   Name = "北极星脚本v3",
   Callback = function()
