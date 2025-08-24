@@ -957,7 +957,7 @@ Tab:AddButton({
 })
 
 Tab:AddButton({
-  Name = "北极星v3",
+  Name = "北极星",
   Callback = function()
    loadstring(game:HttpGet("https://raw.githubusercontent.com/BJX553/BJX/refs/heads/main/BJX%E8%84%9A%E6%9C%AC%E4%B8%AD%E5%BF%83.lua"))()
   end
