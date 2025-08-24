@@ -291,7 +291,29 @@ shuaxinlb(true)
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/BJX553/BJX/refs/heads/main/OrionLib.lua')))()
 local Window = OrionLib:MakeWindow({IntroText = "北极星脚本中心V4",Name = " 丨北极星脚本中心丨V4 执行器:" ..identifyexecutor() , HidePremium = false, SaveConfig = true, ConfigFolder = ""})
 
+local Tab = Window:MakeTab({
+	Name = "公告栏",
+	Icon = "rbxassetid://78892482588180",
+	PremiumOnly = false
+})
 
+XuanTab:AddParagraph("作者","小北")
+XuanTab:AddParagraph("源码提供","小玄奘")
+XuanTab:AddParagraph("贡献榜","小玄、冻梨、神青、风御")
+XuanTab:AddParagraph("脚本属于","半缝合")
+XuanTab:AddParagraph("问题反映","如有Bug请进群上报")
+
+XuanTab:AddButton ({
+	Name = "北极星主群",
+	Callback = function ()
+	 setclipboard("985228498")
+	 OrionLib:MakeNotification({
+                    Name = "提示信息",
+                    Content = "已复制",
+                    Time = 3
+                })
+	end
+})
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 local Tab = Window:MakeTab({
 	Name = "自动发言",
