@@ -302,14 +302,6 @@ XuanTab:AddParagraph("源码提供","小玄奘")
 XuanTab:AddParagraph("脚本属于","半缝合")
 XuanTab:AddParagraph("特别感谢","小玄、冻梨、神青、风御")
 XuanTab:AddParagraph("北极星脚本","永久公益")
-
-Tab:AddButton({
-	Name = "北极星脚本V3",
-	Callback = function()
-		loadstring(game:HttpGet("https://raw.githubusercontent.com/BJX553/BJX/refs/heads/main/BJX%E8%84%9A%E6%9C%AC%E4%B8%AD%E5%BF%83.lua"))()
-	end
-})
-
 XuanTab:AddButton ({
 	Name = "北极星脚本主群",
 	Callback = function ()
@@ -319,6 +311,19 @@ XuanTab:AddButton ({
                     Content = "已复制",
                     Time = 3
                 })
+	end
+})
+
+local XuanTab = Window:MakeTab({
+	Name = "北极星历史版本",
+	Icon = "rbxassetid://78892482588180",
+	PremiumOnly = false
+})
+
+Tab:AddButton({
+	Name = "北极星脚本V3",
+	Callback = function()
+		loadstring(game:HttpGet("https://raw.githubusercontent.com/BJX553/BJX/refs/heads/main/BJX%E8%84%9A%E6%9C%AC%E4%B8%AD%E5%BF%83.lua"))()
 	end
 })
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
