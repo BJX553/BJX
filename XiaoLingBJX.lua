@@ -291,7 +291,7 @@ shuaxinlb(true)
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/BJX553/BJX/refs/heads/main/OrionLib.lua')))()
 local Window = OrionLib:MakeWindow({IntroText = "北极星脚本中心V4",Name = " 丨北极星脚本中心丨V4 执行器:" ..identifyexecutor() , HidePremium = false, SaveConfig = true, ConfigFolder = ""})
 
-local XuanTab = Window:MakeTab({
+local Tab = Window:MakeTab({
 	Name = "公告栏",
 	Icon = "rbxassetid://78892482588180",
 	PremiumOnly = false
@@ -313,6 +313,19 @@ XuanTab:AddButton ({
                     Time = 3
                 })
 	end
+})
+
+local Tab = Window:MakeTab({
+	Name = "北极星历代脚本",
+	Icon = "rbxassetid://78892482588180",
+	PremiumOnly = false
+})
+
+Tab:AddButton({
+  Name = "北极星脚本v3",
+  Callback = function()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/BJX553/BJX/refs/heads/main/BJX%E8%84%9A%E6%9C%AC%E4%B8%AD%E5%BF%83.lua"))()
+  end
 })
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 local Tab = Window:MakeTab({
