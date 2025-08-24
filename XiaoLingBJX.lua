@@ -15243,16 +15243,3 @@ loadstring(game:HttpGet("https://raw.githubusercontent.com/BJX553/BJX/refs/heads
   end
 })
 
-local Tab = Window:MakeTab({
-	Name = "北极星历代脚本",
-	Icon = "rbxassetid://78892482588180",
-	PremiumOnly = false
-})
-
-Tab:AddButton({
-  Name = "北极星脚本v3",
-  Callback = function()
-loadstring(game:HttpGet("https://raw.githubusercontent.com/BJX553/BJX/refs/heads/main/%E5%9C%A8%E8%B6%85%E5%B8%82%E7%94%9F%E6%B4%BB%E4%B8%80%E5%91%A8.lua"))()
-  end
-})
-
