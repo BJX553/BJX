@@ -215,7 +215,7 @@ local function Notification(title, content, duration)
     })
 end
 
-local Tab = Window:Tab({Title = "👤 | 通用", Icon = "star"})
+local Tab = Window:Tab({Title = "👤 | 玩家", Icon = "star"})
 
 Tab:Section({Title = "移动速度设置"})
 
@@ -263,19 +263,70 @@ Tab:Section({Title = "移动速度设置"})
         end
     })
 
-Tab:Section({Title = "⚡  | 飞行设置"})
+Tab:Section({Title = "⚡️ | 玩家:体力设置"})
 
-    Tab:Button({
-    Title = "飞行V1",
-    Desc = "⸝⸝ ᷇࿀ ᷆⸝⸝我要飞得更高～",
-    Callback = function()
-        loadstring(game:HttpGet("https://pastebin.com/raw/UVAj0uWu"))()
-    end
-})
+    Tab:Slider({
+        Title = "体力上限设置",
+        Min = 5,
+        Max = 500,
+        Rounding = 100,
+        Value = 5,
+        Callback = function(Value)
+local Sprinting = game:GetService("ReplicatedStorage").Systems.Character.Game.Sprinting
+local stamina = require(Sprinting)
+stamina.MaxStamina = Value
+stamina.StaminaLossDisabled = false
+        end
+    })
 
+    Tab:Toggle({
+        Title = "无限体力",
+        Desc = "",
+        Value = false,
+        Callback = function(Value)
+       _G.InfStamina = Value
+       if Value then
+           spawn(function()
+               while _G.InfStamina do
+                   local success, staminaModule = pcall(function()
+                       return require(game.ReplicatedStorage:WaitForChild("Systems"):WaitForChild("Character"):WaitForChild("Game"):WaitForChild("Sprinting"))
+                   end)
+                   if success and staminaModule then
+                       staminaModule.MaxStamina = 696969
+                       staminaModule.Stamina = 696969
+                       if staminaModule.__staminaChangedEvent then
+                           staminaModule.__staminaChangedEvent:Fire(staminaModule.Stamina)
+                       end
+                   end
+                   wait(0.1)
+               end
+           end)
+       end
+        end
+    })
 
+Tab:Section({Title = "🧰 | 自动:发电机"})
 
-
+    Tab:Toggle({
+        Title = "自动发电机",
+        Desc = "",
+        Value = false,
+        Callback = function(Value)
+       ActiveAutoGenerator = Value task.spawn(function()
+           while ActiveAutoGenerator do task.spawn(function()
+             for _,Players in pairs(Game.Workspace.Map.Ingame:FindFirstChild("Map"):GetChildren()) do 
+               if Players:isA("Model") and Players.name == "Generator"  then 
+                 if Players:FindFirstChild("Remotes"):FindFirstChild("RE") then 
+                    Players:FindFirstChild("Remotes"):FindFirstChild("RE"):FireServer() 
+                 end
+               end
+             end
+         end)
+         task.wait(2.5)
+       end 
+   end)
+        end
+    })
 
 -- ===== Robust Sound Auto Block (replace your current Sound Auto Block) =====
 local soundHooks = {}     -- [Sound] = {playedConn, propConn, destroyConn}
@@ -668,4 +719,4 @@ game.Players.LocalPlayer.CharacterAdded:Connect(function()
     if infiniteStamina then
         enableInfiniteStamina()
     end
-end) 
+end)
