@@ -272,3 +272,400 @@ Tab:Section({Title = "⚡  | 飞行设置"})
         loadstring(game:HttpGet("https://pastebin.com/raw/UVAj0uWu"))()
     end
 })
+
+
+
+
+
+-- ===== Robust Sound Auto Block (replace your current Sound Auto Block) =====
+local soundHooks = {}     -- [Sound] = {playedConn, propConn, destroyConn}
+local soundBlockedUntil = {} -- [Sound] = timestamp when we can block again (throttle)
+
+local function extractNumericSoundId(sound)
+    if not sound or not sound.SoundId then return nil end
+    local sid = tostring(sound.SoundId)
+
+    -- Prefer numeric id if present
+    local num = sid:match("%d+")
+    if num then return num end
+
+    -- Fallbacks (these won't match your numeric whitelist, but kept for completeness)
+    local hash = sid:match("[&%?]hash=([^&]+)")
+    if hash then return "&hash="..hash end
+    local path = sid:match("rbxasset://sounds/.+")
+    if path then return path end
+
+    return nil
+end
+
+local function getSoundWorldPosition(sound)
+    if not sound then return nil end
+    if sound.Parent and sound.Parent:IsA("BasePart") then
+        return sound.Parent.Position, sound.Parent
+    end
+    if sound.Parent and sound.Parent:IsA("Attachment") and sound.Parent.Parent and sound.Parent.Parent:IsA("BasePart") then
+        return sound.Parent.Parent.Position, sound.Parent.Parent
+    end
+    -- deep search for any BasePart ancestor/descendant
+    local found = sound.Parent and sound.Parent:FindFirstChildWhichIsA("BasePart", true)
+    if found then
+        return found.Position, found
+    end
+    return nil, nil
+end
+
+local function attemptBlockForSound(sound)
+    if not autoBlockAudioOn then return end
+    if not sound or not sound:IsA("Sound") then return end
+
+    -- Only care when actually playing
+    if not sound.IsPlaying then return end
+
+    local id = extractNumericSoundId(sound)
+    if not id or not autoBlockTriggerSounds[id] then return end
+
+    local myRoot = lp.Character and lp.Character:FindFirstChild("HumanoidRootPart")
+    if not myRoot then return end
+
+    -- Throttle one block per sound for a short window
+    if soundBlockedUntil[sound] and tick() < soundBlockedUntil[sound] then
+        return
+    end
+
+    local soundPos, soundPart = getSoundWorldPosition(sound)
+    local shouldBlock = false
+    local facingOK = true
+
+    if soundPos then
+        local dist = (myRoot.Position - soundPos).Magnitude
+        if dist <= detectionRange then
+            shouldBlock = true
+            -- Only do facing check if we have a BasePart to use (soundPart)
+            if facingCheckEnabled and soundPart and soundPart:IsA("BasePart") then
+                facingOK = isFacing(myRoot, soundPart)
+            end
+        end
+    else
+        -- No position available -> block anyway (per your request)
+        shouldBlock = true
+        facingOK = true
+    end
+
+    if shouldBlock and facingOK then
+        fireRemoteBlock()
+        if customBlockEnabled and customBlockAnimId ~= "" then
+            playCustomAnim(customBlockAnimId, false)
+        end
+        -- throttle: don't spam block for the same sound
+        soundBlockedUntil[sound] = tick() + 1.2
+    end
+end
+
+local function hookSound(sound)
+    if not sound or not sound:IsA("Sound") then return end
+    if soundHooks[sound] then return end -- already hooked
+
+    local playedConn = sound.Played:Connect(function()
+        -- handle immediate play
+        pcall(attemptBlockForSound, sound)
+    end)
+
+    local propConn = sound:GetPropertyChangedSignal("IsPlaying"):Connect(function()
+        if sound.IsPlaying then
+            pcall(attemptBlockForSound, sound)
+        end
+    end)
+
+    local destroyConn
+    destroyConn = sound.Destroying:Connect(function()
+        -- cleanup
+        if playedConn and playedConn.Connected then playedConn:Disconnect() end
+        if propConn and propConn.Connected then propConn:Disconnect() end
+        if destroyConn and destroyConn.Connected then destroyConn:Disconnect() end
+        soundHooks[sound] = nil
+        soundBlockedUntil[sound] = nil
+    end)
+
+    soundHooks[sound] = {playedConn, propConn, destroyConn}
+
+    -- If it's already playing right now, check it immediately
+    if sound.IsPlaying then
+        task.spawn(function() pcall(attemptBlockForSound, sound) end)
+    end
+end
+
+-- Hook existing Sounds across the game (covers workspace, SoundService, Lighting, etc.)
+for _, desc in ipairs(game:GetDescendants()) do
+    if desc:IsA("Sound") then
+        pcall(hookSound, desc)
+    end
+end
+
+-- Hook any future Sounds
+game.DescendantAdded:Connect(function(desc)
+    if desc:IsA("Sound") then
+        pcall(hookSound, desc)
+    end
+end)
+-- ===== End Robust Sound Auto Block =====
+
+-- Auto block + punch detection loop
+RunService.RenderStepped:Connect(function()
+    local myChar = lp.Character
+    if not myChar then return end
+    local myRoot = myChar:FindFirstChild("HumanoidRootPart")
+    Humanoid = myChar:FindFirstChildOfClass("Humanoid")
+        -- Auto Block: Trigger block if a valid animation is played by a killer
+    for _, plr in ipairs(Players:GetPlayers()) do
+        if plr ~= lp and plr.Character then
+            local hrp = plr.Character:FindFirstChild("HumanoidRootPart")
+            local hum = plr.Character:FindFirstChildOfClass("Humanoid")
+            local animTracks = hum and hum:FindFirstChildOfClass("Animator") and hum:FindFirstChildOfClass("Animator"):GetPlayingAnimationTracks()
+
+            if hrp and myRoot and (hrp.Position - myRoot.Position).Magnitude <= detectionRange then
+                for _, track in ipairs(animTracks or {}) do
+                    local id = tostring(track.Animation.AnimationId):match("%d+")
+                    if table.find(autoBlockTriggerAnims, id) then
+                        if autoBlockOn and (not strictRangeOn or (hrp.Position - myRoot.Position).Magnitude <= detectionRange) then
+                            if isFacing(myRoot, hrp) then
+                                fireRemoteBlock()
+                                if customBlockEnabled and customBlockAnimId ~= "" then
+                                    playCustomAnim(customBlockAnimId, false)
+                                end
+                            end
+                        end
+                    end
+                end
+            end
+        end
+    end
+
+    -- Detect if player is playing a block animation, and blockTP is enabled
+    if blockTPEnabled and Humanoid and tick() - lastBlockTpTime >= 5 then
+        for _, track in ipairs(Humanoid:GetPlayingAnimationTracks()) do
+            local animId = tostring(track.Animation.AnimationId):match("%d+")
+            if animId == "72722244508749" or animId == "96959123077498" then
+                local myRoot = lp.Character and lp.Character:FindFirstChild("HumanoidRootPart")
+                if myRoot then
+                    local killers = {"c00lkidd", "Jason", "JohnDoe", "1x1x1x1", "Noli"}
+                    for _, name in ipairs(killers) do
+                        local killer = workspace:FindFirstChild("Players")
+                            and workspace.Players:FindFirstChild("Killers")
+                            and workspace.Players.Killers:FindFirstChild(name)
+
+                        if killer and killer:FindFirstChild("HumanoidRootPart") then
+                            lastBlockTpTime = tick()
+
+                            task.spawn(function()
+                                local startTime = tick()
+                                while tick() - startTime < 0.5 do
+                                    if lp.Character and lp.Character:FindFirstChild("HumanoidRootPart") then
+                                        local myRoot = lp.Character.HumanoidRootPart
+                                        local targetHRP = killer.HumanoidRootPart
+                                        local direction = targetHRP.CFrame.LookVector
+                                        local tpPosition = targetHRP.Position + direction * 6
+                                        myRoot.CFrame = CFrame.new(tpPosition)
+                                    end
+                                    task.wait()
+                                end
+                            end)
+
+                            break
+                        end
+                    end
+                end
+                break
+            end
+        end
+    end
+
+    -- Predictive Auto Block: Check killer range and time
+    if predictiveBlockOn and tick() > predictiveCooldown then
+        local killersFolder = workspace:FindFirstChild("Players") and workspace.Players:FindFirstChild("Killers")
+        local myChar = lp.Character
+        local myHRP = myChar and myChar:FindFirstChild("HumanoidRootPart")
+        local myHum = myChar and myChar:FindFirstChild("Humanoid")
+
+        if killersFolder and myHRP and myHum then
+            local killerInRange = false
+
+            for _, killer in ipairs(killersFolder:GetChildren()) do
+                local hrp = killer:FindFirstChild("HumanoidRootPart")
+                if hrp then
+                    local dist = (myHRP.Position - hrp.Position).Magnitude
+                    if dist <= detectionRange then
+                        killerInRange = true
+                        break
+                    end
+                end
+            end
+
+            -- Handle killer entering range
+            if killerInRange then
+                if not killerInRangeSince then
+                    killerInRangeSince = tick()  -- Start the timer when the killer enters the range
+                elseif tick() - killerInRangeSince >= edgeKillerDelay then
+                    -- Block if the killer has stayed in range long enough
+                    fireRemoteBlock()
+                    predictiveCooldown = tick() + 2  -- Set cooldown to avoid blocking too quickly again
+                    killerInRangeSince = nil  -- Reset the timer
+                end
+            else
+                killerInRangeSince = nil  -- Reset timer if the killer leaves range
+            end
+        end
+    end
+
+
+
+    -- Auto Punch
+    if autoPunchOn then
+        local gui = PlayerGui:FindFirstChild("MainUI")
+        local punchBtn = gui and gui:FindFirstChild("AbilityContainer") and gui.AbilityContainer:FindFirstChild("Punch")
+        local charges = punchBtn and punchBtn:FindFirstChild("Charges")
+
+        if charges and charges.Text == "1" then
+            local killerNames = {"c00lkidd", "Jason", "JohnDoe", "1x1x1x1", "Noli"}
+            for _, name in ipairs(killerNames) do
+                local killer = workspace:FindFirstChild("Players")
+                    and workspace.Players:FindFirstChild("Killers")
+                    and workspace.Players.Killers:FindFirstChild(name)
+
+                if killer and killer:FindFirstChild("HumanoidRootPart") then
+                    local root = killer.HumanoidRootPart
+                    local myChar = lp.Character
+                    local myRoot = myChar and myChar:FindFirstChild("HumanoidRootPart")
+                    if root and myRoot and (root.Position - myRoot.Position).Magnitude <= 10 then
+
+                        -- Aim Punch: Constant look at killer with prediction
+                        if aimPunch then
+                            local humanoid = myChar:FindFirstChild("Humanoid")
+                            if humanoid then
+                                humanoid.AutoRotate = false
+                            end
+
+                            task.spawn(function()
+                                local start = tick()
+                                while tick() - start < 2 do
+                                    if myRoot and root and root.Parent then
+                                        local predictedPos = root.Position + (root.CFrame.LookVector * predictionValue)
+                                        myRoot.CFrame = CFrame.lookAt(myRoot.Position, predictedPos)
+                                    end
+                                    task.wait()
+                                end
+                                -- Reset movement after aim
+                                if humanoid then
+                                    humanoid.AutoRotate = true
+                                end
+                            end)
+                        end
+
+                        -- Trigger punch GUI button
+                        for _, conn in ipairs(getconnections(punchBtn.MouseButton1Click)) do
+                            pcall(function()
+                                conn:Fire()
+                            end)
+                        end
+
+                        -- Fling Punch: Constant TP 2 studs in front of killer for 1 second
+                        if flingPunchOn then
+                            hiddenfling = true
+                            local targetHRP = root
+                            task.spawn(function()
+                                local start = tick()
+                                while tick() - start < 1 do
+                                    if lp.Character and lp.Character:FindFirstChild("HumanoidRootPart") and targetHRP and targetHRP.Parent then
+                                        local frontPos = targetHRP.Position + (targetHRP.CFrame.LookVector * 2)
+                                        lp.Character.HumanoidRootPart.CFrame = CFrame.new(frontPos, targetHRP.Position)
+                                    end
+                                    task.wait()
+                                end
+                                hiddenfling = false
+                            end)
+                        end
+
+                        -- Play custom punch animation if enabled
+                        if customPunchEnabled and customPunchAnimId ~= "" then
+                            playCustomAnim(customPunchAnimId, true)
+                        end
+
+                        break -- Only punch one killer per frame
+                    end
+                end
+            end
+        end
+    end
+
+end)
+
+-- Cooldown tracking for each replacement type
+local lastReplaceTime = {
+    block = 0,
+    punch = 0,
+    charge = 0,
+}
+
+-- Continuous custom animation replacer (runs forever if toggled on)
+task.spawn(function()
+    while true do
+        RunService.Heartbeat:Wait()
+
+        local char = lp.Character
+        if not char then continue end
+
+        local humanoid = char:FindFirstChildOfClass("Humanoid")
+        local animator = humanoid and humanoid:FindFirstChildOfClass("Animator")
+        if not animator then continue end
+
+        for _, track in ipairs(animator:GetPlayingAnimationTracks()) do
+            local animId = tostring(track.Animation.AnimationId):match("%d+")
+
+            -- Block animation replacement
+            if customBlockEnabled and customBlockAnimId ~= "" and table.find(blockAnimIds, animId) then
+                if tick() - lastReplaceTime.block >= 3 then
+                    lastReplaceTime.block = tick()
+                    track:Stop()
+                    local newAnim = Instance.new("Animation")
+                    newAnim.AnimationId = "rbxassetid://" .. customBlockAnimId
+                    local newTrack = animator:LoadAnimation(newAnim)
+                    newTrack:Play()
+                    break
+                end
+            end
+
+            -- Punch animation replacement
+            if customPunchEnabled and customPunchAnimId ~= "" and table.find(punchAnimIds, animId) then
+                if tick() - lastReplaceTime.punch >= 3 then
+                    lastReplaceTime.punch = tick()
+                    track:Stop()
+                    local newAnim = Instance.new("Animation")
+                    newAnim.AnimationId = "rbxassetid://" .. customPunchAnimId
+                    local newTrack = animator:LoadAnimation(newAnim)
+                    newTrack:Play()
+                    break
+                end
+            end
+
+            -- Charge animation replacement
+            if customChargeEnabled and customChargeAnimId ~= "" and table.find(chargeAnimIds, animId) then
+                if tick() - lastReplaceTime.charge >= 3 then
+                    lastReplaceTime.charge = tick()
+                    track:Stop()
+                    local newAnim = Instance.new("Animation")
+                    newAnim.AnimationId = "rbxassetid://" .. customChargeAnimId
+                    local newTrack = animator:LoadAnimation(newAnim)
+                    newTrack:Play()
+                    break
+                end
+            end
+        end
+    end
+end)
+
+-- Readd infinite stamina
+game.Players.LocalPlayer.CharacterAdded:Connect(function()
+    task.wait(1)
+    if infiniteStamina then
+        enableInfiniteStamina()
+    end
+end) 
