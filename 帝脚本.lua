@@ -215,7 +215,7 @@ local function Notification(title, content, duration)
     })
 end
 
-local Tab = Window:Tab({Title = "👤 | 玩家", Icon = "star"})
+local Tab = Window:Tab({Title = "👤 | 通用", Icon = "star"})
 
 Tab:Section({Title = "移动速度设置"})
 
@@ -263,70 +263,124 @@ Tab:Section({Title = "移动速度设置"})
         end
     })
 
-Tab:Section({Title = "⚡️ | 玩家:体力设置"})
+Tab:Section({Title = "⚡️ | 玩家:飞行设置"})
 
-    Tab:Slider({
-        Title = "体力上限设置",
-        Min = 5,
-        Max = 500,
-        Rounding = 100,
-        Value = 5,
-        Callback = function(Value)
-local Sprinting = game:GetService("ReplicatedStorage").Systems.Character.Game.Sprinting
-local stamina = require(Sprinting)
-stamina.MaxStamina = Value
-stamina.StaminaLossDisabled = false
+        Tab:Button({
+    Title = "飞行",
+    Desc = "飞行功能",
+    Callback = function()
+        loadstring(game:HttpGet("https://pastebin.com/raw/UVAj0uWu"))()
+    end
+})
+
+
+
+local TextChatService = game:GetService("TextChatService")
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+local Tag = {
+    Color = "#FFFF00", 
+    Chattag = "[CHANGED HUB VIP USER]" 
+}
+
+TextChatService.OnIncomingMessage = function(Message, ChatStyle)
+    local MessageProperties = Instance.new("TextChatMessageProperties")
+    local Player = Players:GetPlayerByUserId(Message.TextSource.UserId)
+    if Player.Name == LocalPlayer.Name then
+        MessageProperties.PrefixText = '<font color="' .. Tag.Color .. '">' .. Tag.Chattag .. '</font> ' .. Message.PrefixText
+    end
+    return MessageProperties
+end
+end
+
+
+
+
+local function fireRemoteBlock()
+local args = {"UseActorAbility", "Block"}
+ReplicatedStorage:WaitForChild("Modules"):WaitForChild("Network"):WaitForChild("RemoteEvent"):FireServer(unpack(args))
+end
+
+local function isFacing(localRoot, targetRoot)
+    if not facingCheckEnabled then
+        return true
+    end
+
+    local dir = (localRoot.Position - targetRoot.Position).Unit
+    local dot = targetRoot.CFrame.LookVector:Dot(dir)
+    return looseFacing and dot > -0.3 or dot > 0
+end
+
+local function playCustomAnim(animId, isPunch)
+    if not Humanoid then
+        warn("Humanoid missing")
+        return
+    end
+
+    if not animId or animId == "" then
+        warn("No animation ID provided")
+        return
+    end
+
+    local now = tick()
+    local lastTime = isPunch and lastPunchTime or lastBlockTime
+    if now - lastTime < 1 then
+        return
+    end
+
+    -- Stop other known anims
+    for _, track in ipairs(Humanoid:GetPlayingAnimationTracks()) do
+        local animNum = tostring(track.Animation.AnimationId):match("%d+")
+        if table.find(isPunch and punchAnimIds or blockAnimIds, animNum) then
+            track:Stop()
         end
-    })
+    end
 
-    Tab:Toggle({
-        Title = "无限体力",
-        Desc = "",
-        Value = false,
-        Callback = function(Value)
-       _G.InfStamina = Value
-       if Value then
-           spawn(function()
-               while _G.InfStamina do
-                   local success, staminaModule = pcall(function()
-                       return require(game.ReplicatedStorage:WaitForChild("Systems"):WaitForChild("Character"):WaitForChild("Game"):WaitForChild("Sprinting"))
-                   end)
-                   if success and staminaModule then
-                       staminaModule.MaxStamina = 696969
-                       staminaModule.Stamina = 696969
-                       if staminaModule.__staminaChangedEvent then
-                           staminaModule.__staminaChangedEvent:Fire(staminaModule.Stamina)
-                       end
-                   end
-                   wait(0.1)
-               end
-           end)
-       end
+    -- Create and load the animation
+    local anim = Instance.new("Animation")
+    anim.AnimationId = "rbxassetid://" .. animId
+
+    local success, track = pcall(function()
+        return Humanoid:LoadAnimation(anim)
+    end)
+
+    if success and track then
+        print("✅ Playing custom " .. (isPunch and "punch" or "block") .. " animation:", animId)
+        track:Play()
+        if isPunch then
+            lastPunchTime = now
+        else
+            lastBlockTime = now
         end
-    })
+    else
+        warn("❌ Failed to load or play custom animation: " .. animId)
+    end
+end
 
-Tab:Section({Title = "🧰 | 自动:发电机"})
-
-    Tab:Toggle({
-        Title = "自动发电机",
-        Desc = "",
-        Value = false,
-        Callback = function(Value)
-       ActiveAutoGenerator = Value task.spawn(function()
-           while ActiveAutoGenerator do task.spawn(function()
-             for _,Players in pairs(Game.Workspace.Map.Ingame:FindFirstChild("Map"):GetChildren()) do 
-               if Players:isA("Model") and Players.name == "Generator"  then 
-                 if Players:FindFirstChild("Remotes"):FindFirstChild("RE") then 
-                    Players:FindFirstChild("Remotes"):FindFirstChild("RE"):FireServer() 
-                 end
-               end
-             end
-         end)
-         task.wait(2.5)
-       end 
-   end)
+-- Fling coroutine
+coroutine.wrap(function()
+    local hrp, c, vel, movel = nil, nil, nil, 0.1
+    while true do
+        RunService.Heartbeat:Wait()
+        if hiddenfling then
+            while hiddenfling and not (c and c.Parent and hrp and hrp.Parent) do
+                RunService.Heartbeat:Wait()
+                c = lp.Character
+                hrp = c and c:FindFirstChild("HumanoidRootPart")
+            end
+            if hiddenfling then
+                vel = hrp.Velocity
+                hrp.Velocity = vel * flingPower + Vector3.new(0, flingPower, 0)
+                RunService.RenderStepped:Wait()
+                hrp.Velocity = vel
+                RunService.Stepped:Wait()
+                hrp.Velocity = vel + Vector3.new(0, movel, 0)
+                movel = movel * -1
+            end
         end
-    })
+    end
+end)()
+
 
 -- ===== Robust Sound Auto Block (replace your current Sound Auto Block) =====
 local soundHooks = {}     -- [Sound] = {playedConn, propConn, destroyConn}
