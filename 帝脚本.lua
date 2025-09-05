@@ -638,11 +638,12 @@ end
     Tab:Section({Title = "🗡️ | 战斗:辅助脚本(提高生存几率)"})
 
     Tab:Button({
-        Title = "飞行",
-        Desc = "飞行功能",
-        Callback = function()
-loadstring(game:HttpGet("https://pastebin.com/raw/UVAj0uWu"))()
-end);
+    Title = "飞行",
+    Desc = "飞行功能",
+    Callback = function()
+        loadstring(game:HttpGet("https://pastebin.com/raw/UVAj0uWu"))()
+    end
+})
 
     Tab:Button({
         Title = "自动背刺 GUI",
