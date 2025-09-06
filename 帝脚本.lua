@@ -2325,13 +2325,13 @@ Tab = Window:MakeTab({
 })
 
 BTab:AddButton({
-    Name = "战争脚本",
-    Desc = "中文功能多wow",
+    Name = "战争大亨中文",
+    Desc = "wow",
     Callback = function()
-          elseif game.PlaceId == 4639625707 then--战争大亨
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/BJX553/BJX/refs/heads/main/%E6%88%98%E4%BA%89%E5%A4%A7%E4%BA%A8.lua"))()  
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/BJX553/BJX/refs/heads/main/%E6%88%98%E4%BA%89%E5%A4%A7%E4%BA%A8.lua"))()
     end
 })
+
 
 Tab = Window:MakeTab({
   IsMobile = true,
@@ -2347,9 +2347,76 @@ BTab:AddButton({
     end
 })
 
+Tab = Window:MakeTab({
+  IsMobile = true,
+  Name = "凹凸世界",
+  Icon = "rbxassetid://4483345998"
+})
 
+Tab:AddToggle({
+    Name = "自动收集球体",
+    Desc = "启用后自动收集球体",
+    Default = false,
+    Flag = "ToggleTest",
+    Save = true,
+    Callback = function(Value)
+        AutoBallFarm = Value
+        
+        if Value then
+            
+            task.spawn(function()
+                while AutoBallFarm and task.wait(0.1) do  -- 添加适当延迟
+                    local number_1 = 2
+                    local table_1 = { [1] = 1, [2] = 1, [3] = 19 }
+                    local Target = game:GetService("ReplicatedStorage").Project.RemoteEvent.ControlMessageEvent
+                    Target:FireServer(number_1, table_1)
+                end
+            end)
+        end
+    end
+})
 
+Tab = Window:MakeTab({
+  IsMobile = true,
+  Name = "俄亥俄州",
+  Icon = "rbxassetid://4483345998"
+})
 
+BTab:AddButton({
+    Name = "俄亥俄州~小北",
+    Desc = "持续更新⸝⸝ ᷇࿀ ᷆⸝⸝",
+    Callback = function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/zilinskaslandon/-/refs/heads/main/xk%E4%BF%84%E4%BA%A5%E4%BF%84%E5%B7%9E.lua"))()
+    end
+})
+
+Tab = Window:MakeTab({
+  IsMobile = true,
+  Name = "制作一架飞机",
+  Icon = "rbxassetid://4483345998"
+})
+
+BTab:AddButton({
+    Name = "制作一架飞机",
+    Desc = "制作一架飞机~汉化功能较少",
+    Callback = function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/BJX553/BJX/refs/heads/main/%E5%BB%BA%E9%80%A0%E4%B8%80%E9%A9%BE%E9%A3%9E%E6%9C%BA.lua"))()
+    end
+})
+
+Tab = Window:MakeTab({
+  IsMobile = true,
+  Name = "种植花园",
+  Icon = "rbxassetid://4483345998"
+})
+
+BTab:AddButton({
+    Name = "功能一",
+    Desc = "⸝⸝ ᷇࿀ ᷆⸝⸝",
+    Callback = function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/BJX553/BJX/refs/heads/main/%E8%8A%B1%E5%9B%AD.lua"))()
+    end
+})
 
 local TextChatService = game:GetService("TextChatService")
 local Players = game:GetService("Players")
