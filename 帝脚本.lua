@@ -30,7 +30,7 @@ local Window = splib:MakeWindow({
 })
 WatermarkLib:Create({
     Hotkey = Enum.KeyCode.Home,
-    CustomText = "帝脚本 V13.0 | By:小北,Q3E4 | {FPS} FPS"
+    CustomText = "帝脚本 V1.2 | By:小北,Q3E4 | {FPS} FPS"
 })
 
 Tab = Window:MakeTab({
@@ -153,6 +153,15 @@ BTab:AddButton({
             loadstring(game:HttpGet("https://pastebin.com/raw/UVAj0uWu"))()
     end
 })
+
+BTab:AddButton({
+    Name = "键盘脚本",
+    Desc = "传统经典键盘‪ᯅ̈",
+    Callback = function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/advxzivhsjjdhxhsidifvsh/mobkeyboard/main/main.txt"))()
+    end
+})
+
 BTab:AddButton({
     Name = "飞车",
     Desc = "What?",
@@ -2286,6 +2295,63 @@ startButton.MouseButton1Click:Connect(function()
 end)
     end
 })
+
+Tab = Window:MakeTab({
+  IsMobile = true,
+  Name = "被遗弃",
+  Icon = "rbxassetid://4483345998"
+})
+
+BTab:AddButton({
+    Name = "被遗弃脚本",
+    Desc = "注意:汉化了˘ᗜ˘",
+    Callback = function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/BJX553/BJX/refs/heads/main/%E9%81%97%E5%BC%83.lua"))()
+    end
+})
+
+BTab:AddButton({
+    Name = "被遗弃‪ᯅ̈",
+    Desc = "Q3E4制作",
+    Callback = function()
+            loadstring(game:HttpGet("https://raw.github.com/OAO-Kamu/I/main/Forsaken-CHANGED.Luau"))()
+    end
+})
+
+Tab = Window:MakeTab({
+  IsMobile = true,
+  Name = "战争大亨",
+  Icon = "rbxassetid://4483345998"
+})
+
+elseif game.PlaceId == 4639625707 then--战争大亨
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/BJX553/BJX/refs/heads/main/%E6%88%98%E4%BA%89%E5%A4%A7%E4%BA%A8.lua"))()
+
+BTab:AddButton({
+    Name = "战争脚本",
+    Desc = "中文功能多wow",
+    Callback = function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/BJX553/BJX/refs/heads/main/%E6%88%98%E4%BA%89%E5%A4%A7%E4%BA%A8.lua"))()
+    end
+})
+
+Tab = Window:MakeTab({
+  IsMobile = true,
+  Name = "吃掉世界",
+  Icon = "rbxassetid://4483345998"
+})
+
+BTab:AddButton({
+    Name = "吃掉世界",
+    Desc = "小北制作",
+    Callback = function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/BJX553/BJX/refs/heads/main/%E5%90%83%E6%8E%89%E4%B8%96%E7%95%8C.lua"))()
+    end
+})
+
+
+
+
 
 local TextChatService = game:GetService("TextChatService")
 local Players = game:GetService("Players")
