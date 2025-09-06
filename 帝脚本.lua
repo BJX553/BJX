@@ -2302,7 +2302,7 @@ Tab = Window:MakeTab({
   Icon = "rbxassetid://4483345998"
 })
 
-BTab:AddButton({
+CTab:AddButton({
     Name = "被遗弃脚本",
     Desc = "注意:汉化了˘ᗜ˘",
     Callback = function()
@@ -2310,7 +2310,7 @@ BTab:AddButton({
     end
 })
 
-BTab:AddButton({
+CTab:AddButton({
     Name = "被遗弃‪ᯅ̈",
     Desc = "Q3E4制作",
     Callback = function()
