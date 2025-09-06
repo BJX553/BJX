@@ -2572,24 +2572,21 @@ LTab = Window:MakeTab({
   Icon = "rbxassetid://4483345998"
 })
 
-LTab:AddToggle({
+BTab:AddToggle({
     Name = "自动刷圈",
-    Desc = "启用自动刷圈功能",
+    Desc = "启用自动刷圈功能并解锁所有宝箱奖励",
     Default = false,
     Callback = function(Value)
         autoHoop = Value
-        if Value then
-            AutoHoop()
-        end
-    end
-})
-
-LTab:AddButton({
-    Name = "开启所有宝箱奖励",
-    Desc = "解锁所有可用的宝箱奖励",
-    Callback = function()
+        
+        
         for _, v in pairs(game.ReplicatedStorage.chestRewards:GetChildren()) do
             game.ReplicatedStorage.rEvents.checkChestRemote:InvokeServer(v.Name)
+        end
+        
+        
+        if Value then
+            AutoHoop()
         end
     end
 })
