@@ -2296,7 +2296,7 @@ end)
     end
 })
 
-Tab = Window:MakeTab({
+CTab = Window:MakeTab({
   IsMobile = true,
   Name = "被遗弃",
   Icon = "rbxassetid://4483345998"
