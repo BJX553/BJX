@@ -2318,13 +2318,13 @@ CTab:AddButton({
     end
 })
 
-Tab = Window:MakeTab({
+DTab = Window:MakeTab({
   IsMobile = true,
   Name = "战争大亨",
   Icon = "rbxassetid://4483345998"
 })
 
-BTab:AddButton({
+DTab:AddButton({
     Name = "战争大亨中文",
     Desc = "wow",
     Callback = function()
@@ -2333,13 +2333,13 @@ BTab:AddButton({
 })
 
 
-Tab = Window:MakeTab({
+ETab = Window:MakeTab({
   IsMobile = true,
   Name = "吃掉世界",
   Icon = "rbxassetid://4483345998"
 })
 
-BTab:AddButton({
+ETab:AddButton({
     Name = "吃掉世界",
     Desc = "小北制作",
     Callback = function()
@@ -2347,13 +2347,13 @@ BTab:AddButton({
     end
 })
 
-Tab = Window:MakeTab({
+FTab = Window:MakeTab({
   IsMobile = true,
   Name = "凹凸世界",
   Icon = "rbxassetid://4483345998"
 })
 
-Tab:AddToggle({
+Fab:AddToggle({
     Name = "自动收集球体",
     Desc = "启用后自动收集球体",
     Default = false,
@@ -2376,13 +2376,13 @@ Tab:AddToggle({
     end
 })
 
-Tab = Window:MakeTab({
+GTab = Window:MakeTab({
   IsMobile = true,
   Name = "俄亥俄州",
   Icon = "rbxassetid://4483345998"
 })
 
-BTab:AddButton({
+GTab:AddButton({
     Name = "俄亥俄州~小北",
     Desc = "持续更新⸝⸝ ᷇࿀ ᷆⸝⸝",
     Callback = function()
@@ -2390,13 +2390,13 @@ BTab:AddButton({
     end
 })
 
-Tab = Window:MakeTab({
+HTab = Window:MakeTab({
   IsMobile = true,
   Name = "制作一架飞机",
   Icon = "rbxassetid://4483345998"
 })
 
-BTab:AddButton({
+HTab:AddButton({
     Name = "制作一架飞机",
     Desc = "制作一架飞机~汉化功能较少",
     Callback = function()
@@ -2404,17 +2404,165 @@ BTab:AddButton({
     end
 })
 
-Tab = Window:MakeTab({
+lTab = Window:MakeTab({
   IsMobile = true,
   Name = "种植花园",
   Icon = "rbxassetid://4483345998"
 })
 
-BTab:AddButton({
+lTab:AddButton({
     Name = "功能一",
     Desc = "⸝⸝ ᷇࿀ ᷆⸝⸝",
     Callback = function()
             loadstring(game:HttpGet("https://raw.githubusercontent.com/BJX553/BJX/refs/heads/main/%E8%8A%B1%E5%9B%AD.lua"))()
+    end
+})
+
+JTab = Window:MakeTab({
+  IsMobile = true,
+  Name = "伐木大亨2",
+  Icon = "rbxassetid://4483345998"
+})
+
+JTab:AddButton({
+    Name = "伐木脚本",
+    Desc = "小北伐木",
+    Callback = function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/zilinskaslandon/-/refs/heads/main/%E4%BC%90%E6%9C%A8%E8%84%9A%E6%9C%AC.Lua"))()
+    end
+})
+
+KTab = Window:MakeTab({
+  IsMobile = true,
+  Name = "监狱人生",
+  Icon = "rbxassetid://4483345998"
+})
+
+KTab:AddButton({
+    Name = "单车",
+    Desc = "生成一辆自行车",
+    Callback = function()
+        loadstring(game:HttpGet("https://pastebin.com/raw/zLe3e4BS"))()
+    end
+})
+
+KTab:AddButton({
+    Name = "kill全部人",
+    Desc = "消灭所有玩家",
+    Callback = function()
+        loadstring(game:HttpGet("https://pastebin.com/raw/kXjfpFPh"))()
+    end
+})
+
+KTab:AddButton({
+    Name = "变身死神",
+    Desc = "变身为死神角色",
+    Callback = function()
+        loadstring(game:HttpGet("https://pastebin.com/raw/ewv9bbRp"))()
+    end
+})
+
+KTab:AddButton({
+    Name = "变身警察",
+    Desc = "加入警察队伍",
+    Callback = function()
+        workspace.Remote.TeamEvent:FireServer("Bright blue")
+    end
+})
+
+KTab:AddButton({
+    Name = "变身囚犯",
+    Desc = "加入囚犯队伍",
+    Callback = function()
+        workspace.Remote.TeamEvent:FireServer("Bright orange")
+    end
+})
+
+KTab:AddButton({
+    Name = "钢筋",
+    Desc = "获取钢筋武器",
+    Callback = function()
+        loadstring(game:HttpGet("https://pastebin.com/raw/7prijqYH"))()
+    end
+})
+
+KTab:AddButton({
+    Name = "手里剑",
+    Desc = "获取手里剑武器",
+    Callback = function()
+        loadstring(game:HttpGet("https://pastebin.com/raw/mSLiAZHk"))()
+    end
+})
+
+KTab:AddButton({
+    Name = "无敌",
+    Desc = "启用无敌模式",
+    Callback = function()
+        loadstring(game:HttpGet("https://pastebin.com/raw/LdTVujTA"))()
+    end
+})
+
+KTab:AddButton({
+    Name = "食堂传送",
+    Desc = "传送到食堂位置",
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(921.0059204101562, 99.98993682861328, 2289.23095703125)
+    end
+})
+
+KTab:AddButton({
+    Name = "下水道传送",
+    Desc = "传送到下水道位置",
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(917.4256591796875, 78.69828033447266, 2416.18359375)
+    end
+})
+
+KTab:AddButton({
+    Name = "警车库传送",
+    Desc = "传送到警车库位置",
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(602.7301635742188, 98.20000457763672, 2503.56982421875)
+    end
+})
+
+KTab:AddButton({
+    Name = "院子传送",
+    Desc = "传送到院子位置",
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(788.5759887695312, 97.99992370605469, 2455.056640625)
+    end
+})
+
+KTab:AddButton({
+    Name = "犯罪复活点传送",
+    Desc = "传送到犯罪复活点",
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-937.5891723632812, 93.09876251220703, 2063.031982421875)
+    end
+})
+
+KTab:AddButton({
+    Name = "监狱外面传送",
+    Desc = "传送到监狱外部",
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(760.6033325195312, 96.96992492675781, 2475.405029296875)
+    end
+})
+
+KTab:AddButton({
+    Name = "监狱内传送",
+    Desc = "传送到监狱内部",
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(919.2575073242188, 98.95999908447266, 2379.74169921875)
+    end
+})
+
+KTab:AddButton({
+    Name = "警卫室传送",
+    Desc = "传送到警卫室",
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(847.7261352539062, 98.95999908447266, 2267.387451171875)
     end
 })
 
