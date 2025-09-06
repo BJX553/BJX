@@ -2566,6 +2566,36 @@ KTab:AddButton({
     end
 })
 
+LTab = Window:MakeTab({
+  IsMobile = true,
+  Name = "极速传奇",
+  Icon = "rbxassetid://4483345998"
+})
+
+LTab:AddToggle({
+    Name = "自动刷圈",
+    Desc = "启用自动刷圈功能",
+    Default = false,
+    Callback = function(Value)
+        autoHoop = Value
+        if Value then
+            AutoHoop()
+        end
+    end
+})
+
+LTab:AddButton({
+    Name = "开启所有宝箱奖励",
+    Desc = "解锁所有可用的宝箱奖励",
+    Callback = function()
+        for _, v in pairs(game.ReplicatedStorage.chestRewards:GetChildren()) do
+            game.ReplicatedStorage.rEvents.checkChestRemote:InvokeServer(v.Name)
+        end
+    end
+})
+
+
+
 local TextChatService = game:GetService("TextChatService")
 local Players = game:GetService("Players")
 local LocalPlayer = Players.LocalPlayer
