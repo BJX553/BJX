@@ -2572,7 +2572,7 @@ LTab = Window:MakeTab({
   Icon = "rbxassetid://4483345998"
 })
 
-BTab:AddToggle({
+LTab:AddToggle({
     Name = "自动刷圈",
     Desc = "启用自动刷圈功能并解锁所有宝箱奖励",
     Default = false,
