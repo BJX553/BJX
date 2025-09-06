@@ -2353,7 +2353,7 @@ FTab = Window:MakeTab({
   Icon = "rbxassetid://4483345998"
 })
 
-Fab:AddToggle({
+FTab:AddToggle({
     Name = "自动收集球体",
     Desc = "启用后自动收集球体",
     Default = false,
