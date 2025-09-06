@@ -2324,14 +2324,12 @@ Tab = Window:MakeTab({
   Icon = "rbxassetid://4483345998"
 })
 
-elseif game.PlaceId == 4639625707 then--战争大亨
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/BJX553/BJX/refs/heads/main/%E6%88%98%E4%BA%89%E5%A4%A7%E4%BA%A8.lua"))()
-
 BTab:AddButton({
     Name = "战争脚本",
     Desc = "中文功能多wow",
     Callback = function()
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/BJX553/BJX/refs/heads/main/%E6%88%98%E4%BA%89%E5%A4%A7%E4%BA%A8.lua"))()
+          elseif game.PlaceId == 4639625707 then--战争大亨
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/BJX553/BJX/refs/heads/main/%E6%88%98%E4%BA%89%E5%A4%A7%E4%BA%A8.lua"))()  
     end
 })
 
