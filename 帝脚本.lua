@@ -154,6 +154,39 @@ BTab:AddButton({
     end
 })
 
+BTab:AddToggle({
+    Name = "夜视",
+    Desc = "开启或关闭夜视模式",
+    Default = false,
+    IsMobile = false,
+    Flag = "NightVisionToggle",
+    Save = true,
+    Callback = function(Value)
+        if Value then
+            game.Lighting.Ambient = Color3.new(1, 1, 1)
+        else
+            game.Lighting.Ambient = Color3.new(0, 0, 0)
+        end
+    end
+})
+
+BTab:AddButton({
+    Name = "点击传送工具",
+    Desc = "获取点击传送工具到背包",
+    Callback = function()
+        mouse = game.Players.LocalPlayer:GetMouse() 
+        tool = Instance.new("Tool") 
+        tool.RequiresHandle = false 
+        tool.Name = "小北、小凌NB" 
+        tool.Activated:connect(function() 
+            local pos = mouse.Hit+Vector3.new(0,2.5,0) 
+            pos = CFrame.new(pos.X,pos.Y,pos.Z) 
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = pos 
+        end) 
+        tool.Parent = game.Players.LocalPlayer.Backpack
+    end
+})
+
 BTab:AddColorpicker({
     Name = "颜色选择器",
     Desc = "选择一个颜色",
@@ -2313,6 +2346,148 @@ end)
     end
 })
 
+RTab = Window:MakeTab({
+  IsMobile = true,
+  Name = "范围",
+  Icon = "rbxassetid://4483345998"
+})
+
+RTab:AddButton({
+    Name = "Acrylix（通用）",
+    Desc = "加载Acrylix通用脚本",
+    Callback = function()
+        loadstring(game:HttpGet('https://raw.githubusercontent.com/3dsonsuce/acrylix/main/Acrylix'))()
+    end
+})
+
+RTab:AddTextbox({
+    Name = "自定义范围",
+    Desc = "设置自定义Hitbox范围大小",
+    Default = "25",
+    TextDisappear = true,
+    Callback = function(Value)
+        _G.HeadSize = Value
+        _G.Disabled = true 
+        game:GetService('RunService').RenderStepped:connect(function()
+            if _G.Disabled then
+                for i,v in next, game:GetService('Players'):GetPlayers() do
+                    if v.Name ~= game:GetService('Players').LocalPlayer.Name then 
+                        pcall(function()
+                            v.Character.HumanoidRootPart.Size = Vector3.new(_G.HeadSize,_G.HeadSize,_G.HeadSize) 
+                            v.Character.HumanoidRootPart.Transparency = 0.7 
+                            v.Character.HumanoidRootPart.BrickColor = BrickColor.new("Really red")
+                            v.Character.HumanoidRootPart.Material = "Neon"
+                            v.Character.HumanoidRootPart.CanCollide = false
+                        end)
+                    end 
+                end 
+            end
+        end)
+    end           
+})
+
+RTab:AddButton({
+    Name = "全游戏通用范围",
+    Desc = "启用全游戏通用的Hitbox范围",
+    Callback = function()
+        local ScreenGui = Instance.new("ScreenGui")
+        local main = Instance.new("Frame")
+        local label = Instance.new("TextLabel")
+        local Hitbox = Instance.new("TextButton")
+        
+        ScreenGui.Parent = game.CoreGui
+        
+        main.Name = "main"
+        main.Parent = ScreenGui
+        main.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+        main.Position = UDim2.new(0.40427351, 0, 0.34591195, 0)
+        main.Size = UDim2.new(0, 100, 0, 100)
+        main.Active = true
+        main.Draggable = true
+        
+        label.Name = "label"
+        label.Parent = main
+        label.BackgroundColor3 = Color3.fromRGB(139,0,0)
+        label.Size = UDim2.new(0, 100, 0, 20)
+        label.Font = Enum.Font.SourceSans
+        label.Text = "hitbox GUI"
+        label.TextColor3 = Color3.fromRGB(0, 0, 0)
+        label.TextScaled = true
+        label.TextSize = 5.000
+        label.TextWrapped = true
+        
+        Hitbox.Name = "Hitbox"
+        Hitbox.Parent = main
+        Hitbox.BackgroundColor3 = Color3.fromRGB(0, 0, 255)
+        Hitbox.Position = UDim2.new(0.114285722, 0, 0.372448981, 0)
+        Hitbox.Size = UDim2.new(0, 90, 0, 40)
+        Hitbox.Font = Enum.Font.SourceSans
+        Hitbox.Text = "hitbox"
+        Hitbox.TextColor3 = Color3.fromRGB(0, 0, 0)
+        Hitbox.TextSize = 40.000
+        Hitbox.MouseButton1Down:connect(function()
+            _G.HeadSize = 20
+            _G.Disabled = true
+            
+            game:GetService('RunService').RenderStepped:connect(function()
+                if _G.Disabled then
+                    for i,v in next, game:GetService('Players'):GetPlayers() do
+                        if v.Name ~= game:GetService('Players').LocalPlayer.Name then
+                            pcall(function()
+                                v.Character.HumanoidRootPart.Size = Vector3.new(_G.HeadSize,_G.HeadSize,_G.HeadSize)
+                                v.Character.HumanoidRootPart.Transparency = 0.7
+                                v.Character.HumanoidRootPart.BrickColor = BrickColor.new("Really black")
+                                v.Character.HumanoidRootPart.Material = "Neon"
+                                v.Character.HumanoidRootPart.CanCollide = false
+                            end)
+                        end
+                    end
+                end
+            end)
+        end)
+    end
+})
+
+RTab:AddButton({
+    Name = "空范围",
+    Desc = "启用空范围Hitbox",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/BINjiaobzx6/BINjiao/main/%E7%A9%BA%E9%80%8F%E8%A7%86.lua"))()
+    end
+})
+
+RTab:AddButton({
+    Name = "普通范围",
+    Desc = "启用普通范围Hitbox",
+    Callback = function()
+        loadstring(game:HttpGet("https://pastebin.com/raw/jiNwDbCN"))()
+    end
+})
+
+RTab:AddButton({
+    Name = "中等范围",
+    Desc = "启用中等范围Hitbox",
+    Callback = function()
+        loadstring(game:HttpGet("https://pastebin.com/raw/x13bwrFb"))()
+    end
+})
+
+RTab:AddButton({
+    Name = "全图范围",
+    Desc = "启用全图范围Hitbox",
+    Callback = function()
+        loadstring(game:HttpGet("https://pastebin.com/raw/KKY9EpZU"))()
+    end
+})
+
+RTab:AddButton({
+    Name = "终极范围",
+    Desc = "启用终极范围Hitbox",
+    Callback = function()
+        loadstring(game:HttpGet("https://pastebin.com/raw/CAQ9x4A7"))()
+    end
+})
+
 MTab = Window:MakeTab({
   IsMobile = true,
   Name = "加入服务器",
@@ -3075,6 +3250,489 @@ OTab:AddButton({
         local args = { [1] = math.huge }
         game:GetService("ReplicatedStorage").Knit.Services.RaidService.RF.GiveReward:InvokeServer(unpack(args))
     end
+})
+
+STab = Window:MakeTab({
+  IsMobile = true,
+  Name = "忍者传奇",
+  Icon = "rbxassetid://4483345998"
+})
+
+STab:AddToggle({
+    Name = "自动购买剑",
+    Desc = "自动购买剑类武器",
+    Default = false,
+    IsMobile = false,
+    Flag = "AutoBuySwordsToggle",
+    Save = true,
+    Callback = function(Value)
+        autobuyswords = Value
+        if autobuyswords then
+            buyswords()
+        end
+    end
+})
+
+STab:AddToggle({
+    Name = "自动购买腰带",
+    Desc = "自动购买腰带装备",
+    Default = false,
+    IsMobile = false,
+    Flag = "AutoBuyBeltsToggle",
+    Save = true,
+    Callback = function(Value)
+        autobuybelts = Value
+        if autobuybelts then
+            buybelts()
+        end
+    end
+})
+
+STab:AddToggle({
+    Name = "自动购买称号（等级）",
+    Desc = "自动购买等级称号",
+    Default = false,
+    IsMobile = false,
+    Flag = "AutoBuyRanksToggle",
+    Save = true,
+    Callback = function(Value)
+        autobuyranks = Value
+        if autobuyranks then
+            buyranks()
+        end
+    end
+})
+
+STab:AddToggle({
+    Name = "自动购买忍术",
+    Desc = "自动购买忍术技能",
+    Default = false,
+    IsMobile = false,
+    Flag = "AutoBuySkillToggle",
+    Save = true,
+    Callback = function(Value)
+        autobuyskill = Value
+        if autobuyskill then
+            buyskill()
+        end
+    end
+})
+
+STab:AddToggle({
+    Name = "自动购买（全部打开）",
+    Desc = "自动购买所有可购买的物品",
+    Default = false,
+    IsMobile = false,
+    Flag = "AutoBuyAllToggle",
+    Save = true,
+    Callback = function(Value)
+        autobuyshurikens = Value
+        if autobuyshurikens then
+            buyshurikens()
+        end
+    end
+})
+
+STab:AddToggle({
+    Name = "自动挥舞",
+    Desc = "自动挥舞武器",
+    Default = false,
+    IsMobile = false,
+    Flag = "AutoSwingToggle",
+    Save = true,
+    Callback = function(Value)
+        autoswing = Value
+        if autoswing then
+            swinging()
+        end
+    end
+})
+
+STab:AddToggle({
+    Name = "自动售卖",
+    Desc = "自动售卖物品",
+    Default = false,
+    IsMobile = false,
+    Flag = "AutoSellToggle",
+    Save = true,
+    Callback = function(Value)
+        autosell = Value
+        if autosell then
+            selling()
+        end
+    end
+})
+
+STab:AddToggle({
+    Name = "存满了自动售卖",
+    Desc = "库存满时自动售卖",
+    Default = false,
+    IsMobile = false,
+    Flag = "AutoSellMaxToggle",
+    Save = true,
+    Callback = function(Value)
+        autosellmax = Value
+        if autosellmax then
+            maxsell()
+        end
+    end
+})
+
+STab:AddButton({
+    Name = "解锁所有岛",
+    Desc = "自动传送到所有岛屿解锁区域",
+    Callback = function()
+        for _, v in next, game.workspace.islandUnlockParts:GetChildren() do
+            if v then
+                game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.islandSignPart.CFrame
+                wait(.5)
+            end
+        end
+    end
+})
+
+STab:AddButton({
+    Name = "附魔岛",
+    Desc = "传送到附魔岛",
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(83.028564453125, 766.3915405273438, -128.62686157226562)
+    end
+})
+
+STab:AddButton({
+    Name = "星界岛",
+    Desc = "传送到星界岛",
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(144.43006896972656, 2014.091064453125, 247.5571746826172)
+    end
+})
+
+STab:AddButton({
+    Name = "神秘岛",
+    Desc = "传送到神秘岛",
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(162.7420654296875, 4047.7841796875, 13.378257751464844)
+    end
+})
+
+STab:AddButton({
+    Name = "太空岛",
+    Desc = "传送到太空岛",
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(184.0364227294922, 5657.091796875, 161.54000854492188)
+    end
+})
+
+STab:AddButton({
+    Name = "冻土岛",
+    Desc = "传送到冻土岛",
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(186.7508544921875, 9285.08984375, 158.16287231445312)
+    end
+})
+
+STab:AddButton({
+    Name = "沙暴",
+    Desc = "传送到沙暴岛",
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(183.7511749267578, 17686.236328125, 147.5008087158203)
+    end
+})
+
+STab:AddButton({
+    Name = "雷暴",
+    Desc = "传送到雷暴岛",
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(186.87640380859375, 24069.9296875, 158.25582885742188)
+    end
+})
+
+STab:AddButton({
+    Name = "远古炼狱岛",
+    Desc = "传送到远古炼狱岛",
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(166.48052978515625, 28256.201171875, 160.25828552246094)
+    end
+})
+
+STab:AddButton({
+    Name = "午夜暗影岛",
+    Desc = "传送到午夜暗影岛",
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(182.76388549804688, 33206.88671875, 136.66305541992188)
+    end
+})
+
+STab:AddButton({
+    Name = "神秘灵魂岛",
+    Desc = "传送到神秘灵魂岛",
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(157.39967346191406, 39317.4765625, 146.05630493164062)
+    end
+})
+
+STab:AddButton({
+    Name = "冬季奇迹岛",
+    Desc = "传送到冬季奇迹岛",
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(168.73797607421875, 46010.4609375, 158.589599609375)
+    end
+})
+
+STab:AddButton({
+    Name = "黄金大师岛",
+    Desc = "传送到黄金大师岛",
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(184.56202697753906, 52607.671875, 166.47279357910156)
+    end
+})
+
+STab:AddButton({
+    Name = "龙传奇岛",
+    Desc = "传送到龙传奇岛",
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(166.83065795898438, 59594.58984375, 150.16586303710938)
+    end
+})
+
+STab:AddButton({
+    Name = "赛博传奇岛",
+    Desc = "传送到赛博传奇岛",
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(167.66766357421875, 66669.0703125, 142.27223205566406)
+    end
+})
+
+STab:AddButton({
+    Name = "天岚超能岛",
+    Desc = "传送到天岚超能岛",
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(182.09237670898438, 70271.0625, 157.14857482910156)
+    end
+})
+
+STab:AddButton({
+    Name = "混沌传奇岛",
+    Desc = "传送到混沌传奇岛",
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(177.88784790039062, 74442.7578125, 143.346435546875)
+    end
+})
+
+STab:AddButton({
+    Name = "灵魂融合岛",
+    Desc = "传送到灵魂融合岛",
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(183.39129638671875, 79746.890625, 163.01148986816406)
+    end
+})
+
+STab:AddButton({
+    Name = "黑暗元素岛",
+    Desc = "传送到黑暗元素岛",
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(169.4972381591797, 83198.890625, 170.53890991210938)
+    end
+})
+
+STab:AddButton({
+    Name = "禅心岛",
+    Desc = "传送到禅心岛",
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(173.4744873046875, 87050.9765625, 141.89602661132812)
+    end
+})
+
+STab:AddButton({
+    Name = "炽热漩涡之岛",
+    Desc = "传送到炽热漩涡之岛",
+    Callback = function()
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(178.33023071289062, 91245.96875, 152.53775024414062)
+    end
+})
+
+VTab = Window:MakeTab({
+  IsMobile = true,
+  Name = "穿着溜冰鞋的布娃娃Obby",
+  Icon = "rbxassetid://4483345998"
+})
+
+VTab:AddButton({
+    Name = "复制服务器名字",
+    Desc = "复制服务器名称到剪贴板",
+    Callback = function()
+        setclipboard("Ragdoll on Skates Obby")
+    end
+})
+
+VTab:AddButton({
+    Name = "无限跳过",
+    Desc = "获取无限跳过次数",
+    Callback = function()
+        game:GetService("ReplicatedStorage").Shared.RemoteFunctions.PlayerProfileRemote:InvokeServer("increment", "Skips", math.huge)
+    end
+})
+
+VTab:AddTextbox({
+    Name = "输入获取跳过",
+    Desc = "输入自定义数量的跳过次数",
+    TextDisappear = false,
+    Callback = function(c, d)
+        if d then
+            game:GetService("ReplicatedStorage").Shared.RemoteFunctions.PlayerProfileRemote:InvokeServer("increment", "Skips", c)
+        end
+    end
+})
+
+VTab:AddButton({
+    Name = "无限胜利",
+    Desc = "获取无限胜利次数",
+    Callback = function()
+        game:GetService("ReplicatedStorage").Shared.RemoteFunctions.PlayerProfileRemote:InvokeServer("increment", "Wins", math.huge)
+    end
+})
+
+VTab:AddTextbox({
+    Name = "输入获取胜利",
+    Desc = "输入自定义数量的胜利次数",
+    TextDisappear = false,
+    Callback = function(e, f)
+        if f then
+            game:GetService("ReplicatedStorage").Shared.RemoteFunctions.PlayerProfileRemote:InvokeServer("increment", "Wins", e)
+        end
+    end
+})
+
+VTab:AddButton({
+    Name = "无限旋转",
+    Desc = "获取无限旋转次数",
+    Callback = function()
+        game:GetService("ReplicatedStorage").Shared.RemoteFunctions.PlayerProfileRemote:InvokeServer("increment", "Spins", math.huge)
+    end
+})
+
+VTab:AddTextbox({
+    Name = "输入获取旋转",
+    Desc = "输入自定义数量的旋转次数",
+    TextDisappear = false,
+    Callback = function(g, h)
+        if h then
+            game:GetService("ReplicatedStorage").Shared.RemoteFunctions.PlayerProfileRemote:InvokeServer("increment", "Spins", g)
+        end
+    end
+})
+
+VTab:AddButton({
+    Name = "无限金币",
+    Desc = "获取无限金币",
+    Callback = function()
+        game:GetService("ReplicatedStorage").Shared.RemoteFunctions.PlayerProfileRemote:InvokeServer("increment", "Coins", math.huge)
+    end
+})
+
+VTab:AddTextbox({
+    Name = "输入获取金币",
+    Desc = "输入自定义数量的金币",
+    TextDisappear = false,
+    Callback = function(i, j)
+        if j then
+            game:GetService("ReplicatedStorage").Shared.RemoteFunctions.PlayerProfileRemote:InvokeServer("increment", "Coins", i)
+        end
+    end
+})
+
+WTab = Window:MakeTab({
+  IsMobile = true,
+  Name = "彩虹朋友",
+  Icon = "rbxassetid://4483345998"
+})
+
+WTab:AddButton({
+    Name = "自动收集积木块",
+    Desc = "自动收集所有积木块物品",
+    Flag = "CollectBlocksButton",
+    Callback = function()
+        for v = 1, 24 do
+            if workspace:FindFirstChild("Block"..v) then
+                Character.HumanoidRootPart.CFrame = workspace:FindFirstChild("Block"..v).TouchTrigger.CFrame
+                wait(0.2)
+                Character.HumanoidRootPart.CFrame = workspace["GroupBuildStructures"]:FindFirstChildOfClass("Model").Trigger.CFrame
+                wait(0.2)
+                tpSpawn()
+                wait(0.2)
+            end
+        end
+    end    
+})
+
+WTab:AddButton({
+    Name = "自动收集食品包",
+    Desc = "自动收集所有颜色的食品包",
+    Flag = "CollectFoodButton",
+    Callback = function()
+        for v = 1, 15 do
+            if workspace:FindFirstChild("FoodGreen") then
+                Character.HumanoidRootPart.CFrame = workspace:FindFirstChild("FoodGreen").TouchTrigger.CFrame
+                wait(0.2)
+                Character.HumanoidRootPart.CFrame = workspace["GroupBuildStructures"]:FindFirstChildOfClass("Model").Trigger.CFrame
+                wait(0.2)
+                tpSpawn()
+                wait(0.2)
+            end
+            if workspace:FindFirstChild("FoodOrange") then
+                Character.HumanoidRootPart.CFrame = workspace:FindFirstChild("FoodOrange").TouchTrigger.CFrame
+                wait(0.2)
+                Character.HumanoidRootPart.CFrame = workspace["GroupBuildStructures"]:FindFirstChildOfClass("Model").Trigger.CFrame
+                wait(0.2)
+                tpSpawn()
+                wait(0.2)
+            end
+            if workspace:FindFirstChild("FoodPink") then
+                Character.HumanoidRootPart.CFrame = workspace:FindFirstChild("FoodPink").TouchTrigger.CFrame
+                wait(0.2)
+                Character.HumanoidRootPart.CFrame = workspace["GroupBuildStructures"]:FindFirstChildOfClass("Model").Trigger.CFrame
+                wait(0.2)
+                tpSpawn()
+                wait(0.2)
+            end
+        end
+    end    
+})
+
+WTab:AddButton({
+    Name = "自动收集保险丝",
+    Desc = "自动收集所有保险丝物品",
+    Flag = "CollectFusesButton",
+    Callback = function()
+        for v = 1, 14 do
+            if workspace:FindFirstChild("Fuse"..v) then
+                Character.HumanoidRootPart.CFrame = workspace:FindFirstChild("Fuse"..v).TouchTrigger.CFrame
+                wait(0.2)
+                Character.HumanoidRootPart.CFrame = workspace["GroupBuildStructures"]:FindFirstChildOfClass("Model").Trigger.CFrame
+                wait(0.2)
+                tpSpawn()
+                wait(0.2)
+            end
+        end
+    end    
+})
+
+WTab:AddButton({
+    Name = "自动收集电池",
+    Desc = "自动收集所有电池物品",
+    Flag = "CollectBatteriesButton",
+    Callback = function()
+        for v = 1, 24 do
+            if workspace:FindFirstChild("Battery") then
+                Character.HumanoidRootPart.CFrame = workspace:FindFirstChild("Battery").TouchTrigger.CFrame
+                wait(0.2)
+                Character.HumanoidRootPart.CFrame = workspace["GroupBuildStructures"]:FindFirstChildOfClass("Model").Trigger.CFrame
+                wait(0.2)
+                tpSpawn()
+                wait(0.2)
+            end
+        end
+    end    
 })
 
 local TextChatService = game:GetService("TextChatService")
