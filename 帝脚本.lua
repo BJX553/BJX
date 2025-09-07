@@ -154,6 +154,23 @@ BTab:AddButton({
     end
 })
 
+BTab:AddColorpicker({
+    Name = "颜色选择器",
+    Desc = "选择一个颜色",
+    Default = Color3.fromRGB(255, 0, 0),
+    Callback = function(Value)
+        print(Value)
+    end
+})
+
+BTab:AddButton({
+    Name = "坐标抓取器",
+    Desc = "获取坐标位置(需要卡密)",
+    Callback = function()
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/hassanxzayn-lua/maincoordinatesgrabber/refs/heads/main/new"))()
+    end
+})
+
 BTab:AddButton({
     Name = "键盘脚本",
     Desc = "传统经典键盘‪ᯅ̈",
@@ -2760,145 +2777,6 @@ PTab:AddTextbox({
     end
 })
 
-QTab = Window:MakeTab({
-  IsMobile = true,
-  Name = "自动骂人",
-  Icon = "rbxassetid://4483345998"
-})
-
--- 三字经函数
-_G.szj = false
-function szj()
-    while _G.szj == true do
-        wait(1)
-        local args = {
-            [1] = "sz",
-            [2] = "All"
-        }
-        game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(unpack(args))
-
-        wait(1)
-        local args = {
-            [1] = "Lz",
-            [2] = "All"
-        }
-        game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(unpack(args))
-
-        wait(1)
-        local args = {
-            [1] = "sbsb ",
-            [2] = "All"
-        }
-        game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(unpack(args))
-
-        wait(1)
-        local args = {
-            [1] = "lol",
-            [2] = "All"
-        }
-        game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(unpack(args))
-
-        wait(1)
-        local args = {
-            [1] = "HACKER!!!!",
-            [2] = "All"
-        }
-        game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(unpack(args))
-
-        wait(1)
-        local args = {
-            [1] = "hacker",
-            [2] = "All"
-        }
-        game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(unpack(args))
-
-        wait(1)
-        local args = {
-            [1] = "EZ LOL",
-            [2] = "All"
-        }
-        game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(unpack(args))
-    end
-end
-
-QTad:AddLabel("roblox发言有限制，连续7条后要冷却10秒")
-
-QTad:AddToggle({
-    Name = "三字经（秒三）",
-    Default = false,
-    Callback = function(Value)
-        _G.szj = Value
-        if Value then
-            szj()
-        end
-    end
-})
-
--- 四字成语函数
-_G.sz = false
-function sz()
-    while _G.sz == true do
-        wait(1)
-        local args = {
-            [1] = "入鸡",
-            [2] = "All"
-        }
-        game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(unpack(args))
-
-        wait(1)
-        local args = {
-            [1] = "神兽 lol",
-            [2] = "All"
-        }
-        game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(unpack(args))
-
-        wait(1)
-        local args = {
-            [1] = "怎么不说话，枯了吗😂",
-            [2] = "All"
-        }
-        game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(unpack(args))
-
-        wait(1)
-        local args = {
-            [1] = "凑啥掉😂🤣",
-            [2] = "All"
-        }
-        game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(unpack(args))
-
-        wait(1)
-        local args = {
-            [1] = "大神兽 lol🤣",
-            [2] = "All"
-        }
-        game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(unpack(args))
-
-        wait(1)
-        local args = {
-            [1] = "怎么的？说你两句，级了？",
-            [2] = "All"
-        }
-        game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(unpack(args))
-
-        wait(1)
-        local args = {
-            [1] = "想要反驳我，周XX 大1313🤣",
-            [2] = "All"
-        }
-        game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(unpack(args))
-    end
-end
-
-QTad:AddToggle({
-    Name = "四字成语（秒四）",
-    Default = false,
-    Callback = function(Value)
-        _G.sz = Value
-        if Value then
-            sz()
-        end
-    end
-})
 
 CTab = Window:MakeTab({
   IsMobile = true,
