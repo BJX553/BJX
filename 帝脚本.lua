@@ -2296,6 +2296,470 @@ end)
     end
 })
 
+MTab = Window:MakeTab({
+  IsMobile = true,
+  Name = "加入服务器",
+  Icon = "rbxassetid://4483345998"
+})
+MTab:AddButton({
+    Name = "加入极速传奇",
+    Desc = "传送到极速传奇游戏",
+    Callback = function()
+        local game_id = 3101667897
+        game:GetService("TeleportService"):Teleport(game_id, game.Players.LocalPlayer)
+    end
+})
+
+MTab:AddButton({
+    Name = "加入鲨口求生2",
+    Desc = "传送到鲨口求生2游戏",
+    Callback = function()
+        local game_id = 8908228901
+        game:GetService("TeleportService"):Teleport(game_id, game.Players.LocalPlayer)
+    end
+})
+
+MTab:AddButton({
+    Name = "加入监狱人生",
+    Desc = "传送到监狱人生游戏",
+    Callback = function()
+        local game_id = 155615604
+        game:GetService("TeleportService"):Teleport(game_id, game.Players.LocalPlayer)
+    end
+})
+
+MTab:AddButton({
+    Name = "加入忍者传奇",
+    Desc = "传送到忍者传奇游戏",
+    Callback = function()
+        local game_id = 3956818381
+        game:GetService("TeleportService"):Teleport(game_id, game.Players.LocalPlayer)
+    end
+})
+
+MTab:AddButton({
+    Name = "加入Break in",
+    Desc = "传送到Break in游戏",
+    Callback = function()
+        local game_id = 1318971886
+        game:GetService("TeleportService"):Teleport(game_id, game.Players.LocalPlayer)
+    end
+})
+
+MTab:AddButton({
+    Name = "加入自然灾害Game",
+    Desc = "传送到自然灾害Game",
+    Callback = function()
+        local game_id = 189707
+        game:GetService("TeleportService"):Teleport(game_id, game.Players.LocalPlayer)
+    end
+})
+
+MTab:AddButton({
+    Name = "加入力量传奇",
+    Desc = "传送到力量传奇游戏",
+    Callback = function()
+        local game_id = 3623096087
+        game:GetService("TeleportService"):Teleport(game_id, game.Players.LocalPlayer)
+    end
+})
+
+MTab:AddButton({
+    Name = "加入餐厅大亨2",
+    Desc = "传送到餐厅大亨2游戏",
+    Callback = function()
+        local game_id = 3398014311
+        game:GetService("TeleportService"):Teleport(game_id, game.Players.LocalPlayer)
+    end
+})
+
+NTab = Window:MakeTab({
+  IsMobile = true,
+  Name = "音乐",
+  Icon = "rbxassetid://4483345998"
+})
+
+NTab:AddButton({
+    Name = "植物大战僵尸",
+    Desc = "播放植物大战僵尸音乐并复制ID",
+    Callback = function()
+        local sound = Instance.new("Sound")
+        sound.SoundId = "rbxassetid://158260415"
+        sound.Parent = game.Workspace
+        sound:Play()
+        setclipboard("158260415")
+        Notification:Notify(
+            {Title = "帝脚本中心", Description = "已复制到粘贴板..."},
+            {OutlineColor = Color3.fromRGB(255, 0, 0), Time = 5, Type = "image"},
+            {Image = "http://www.roblox.com/asset/?id=7733747106", ImageColor = Color3.fromRGB(0, 0, 255)}
+        )
+    end
+})
+
+NTab:AddButton({
+    Name = "早安越南",
+    Desc = "播放早安越南音乐并复制ID",
+    Callback = function()
+        local sound = Instance.new("Sound")
+        sound.SoundId = "rbxassetid://8295016126"
+        sound.Parent = game.Workspace
+        sound:Play()
+        setclipboard("8295016126")
+        Notification:Notify(
+            {Title = "帝脚本中心", Description = "已复制到粘贴板..."},
+            {OutlineColor = Color3.fromRGB(255, 0, 0), Time = 5, Type = "image"},
+            {Image = "http://www.roblox.com/asset/?id=7733747106", ImageColor = Color3.fromRGB(0, 0, 255)}
+        )
+    end
+})
+
+NTab:AddButton({
+    Name = "愤怒芒西 Evade?",
+    Desc = "播放愤怒芒西音乐并复制ID",
+    Callback = function()
+        local sound = Instance.new("Sound")
+        sound.SoundId = "rbxassetid://5029269312"
+        sound.Parent = game.Workspace
+        sound:Play()
+        setclipboard("5029269312")
+        Notification:Notify(
+            {Title = "帝脚本中心", Description = "已复制到粘贴板..."},
+            {OutlineColor = Color3.fromRGB(255, 0, 0), Time = 5, Type = "image"},
+            {Image = "http://www.roblox.com/asset/?id=7733747106", ImageColor = Color3.fromRGB(0, 0, 255)}
+        )
+    end
+})
+
+NTab:AddButton({
+    Name = "梅西",
+    Desc = "播放梅西音乐并复制ID",
+    Callback = function()
+        local sound = Instance.new("Sound")
+        sound.SoundId = "rbxassetid://7354576319"
+        sound.Parent = game.Workspace
+        sound:Play()
+        setclipboard("7352576319")
+        Notification:Notify(
+            {Title = "帝脚本中心", Description = "已复制到粘贴板..."},
+            {OutlineColor = Color3.fromRGB(255, 0, 0), Time = 5, Type = "image"},
+            {Image = "http://www.roblox.com/asset/?id=7733747106", ImageColor = Color3.fromRGB(0, 0, 255)}
+        )
+    end
+})
+
+NTab:AddButton({
+    Name = "永春拳",
+    Desc = "播放永春拳音乐并复制ID",
+    Callback = function()
+        local sound = Instance.new("Sound")
+        sound.SoundId = "rbxassetid://1845973140"
+        sound.Parent = game.Workspace
+        sound:Play()
+        setclipboard("1845973140")
+        Notification:Notify(
+            {Title = "帝脚本中心", Description = "已复制到粘贴板..."},
+            {OutlineColor = Color3.fromRGB(255, 0, 0), Time = 5, Type = "image"},
+            {Image = "http://www.roblox.com/asset/?id=7733747106", ImageColor = Color3.fromRGB(0, 0, 255)}
+        )
+    end
+})
+
+NTab:AddButton({
+    Name = "带劲的音乐",
+    Desc = "播放带劲的音乐并复制ID",
+    Callback = function()
+        local sound = Instance.new("Sound")
+        sound.SoundId = "rbxassetid://18841891575"
+        sound.Parent = game.Workspace
+        sound:Play()
+        setclipboard("18841891517")
+        Notification:Notify(
+            {Title = "帝脚本中心", Description = "已复制到粘贴板..."},
+            {OutlineColor = Color3.fromRGB(255, 0, 0), Time = 5, Type = "image"},
+            {Image = "http://www.roblox.com/asset/?id=7733747106", ImageColor = Color3.fromRGB(0, 0, 255)}
+        )
+    end
+})
+
+NTab:AddButton({
+    Name = "韩国国歌",
+    Desc = "播放韩国国歌并复制ID",
+    Callback = function()
+        local sound = Instance.new("Sound")
+        sound.SoundId = "rbxassetid://1837478300"
+        sound.Parent = game.Workspace
+        sound:Play()
+        setclipboard("1837478300")
+        Notification:Notify(
+            {Title = "帝脚本中心", Description = "已复制到粘贴板..."},
+            {OutlineColor = Color3.fromRGB(255, 0, 0), Time = 5, Type = "image"},
+            {Image = "http://www.roblox.com/asset/?id=7733747106", ImageColor = Color3.fromRGB(0, 0, 255)}
+        )
+    end
+})
+
+NTab:AddButton({
+    Name = "“哥哥你女朋友不会吃醋吧?”",
+    Desc = "播放该梗音频并复制ID",
+    Callback = function()
+        local sound = Instance.new("Sound")
+        sound.SoundId = "rbxassetid://8715811379"
+        sound.Parent = game.Workspace
+        sound:Play()
+        setclipboard("8715811379")
+        Notification:Notify(
+            {Title = "帝脚本中心", Description = "已复制到粘贴板..."},
+            {OutlineColor = Color3.fromRGB(255, 0, 0), Time = 5, Type = "image"},
+            {Image = "http://www.roblox.com/asset/?id=7733747106", ImageColor = Color3.fromRGB(0, 0, 255)}
+        )
+    end
+})
+
+NTab:AddButton({
+    Name = "蜘蛛侠出场声音",
+    Desc = "播放蜘蛛侠出场声音并复制ID",
+    Callback = function()
+        local sound = Instance.new("Sound")
+        sound.SoundId = "rbxassetid://9108472930"
+        sound.Parent = game.Workspace
+        sound:Play()
+        setclipboard("918472930")
+        Notification:Notify(
+            {Title = "帝脚本中心", Description = "已复制到粘贴板..."},
+            {OutlineColor = Color3.fromRGB(255, 0, 0), Time = 5, Type = "image"},
+            {Image = "http://www.roblox.com/asset/?id=7733747106", ImageColor = Color3.fromRGB(0, 0, 255)}
+        )
+    end
+})
+
+NTab:AddButton({
+    Name = "消防车",
+    Desc = "播放消防车声音并复制ID",
+    Callback = function()
+        local sound = Instance.new("Sound")
+        sound.SoundId = "rbxassetid://317455930"
+        sound.Parent = game.Workspace
+        sound:Play()
+        setclipboard("317455930")
+        Notification:Notify(
+            {Title = "帝脚本中心", Description = "已复制到粘贴板..."},
+            {OutlineColor = Color3.fromRGB(255, 0, 0), Time = 5, Type = "image"},
+            {Image = "http://www.roblox.com/asset/?id=7733747106", ImageColor = Color3.fromRGB(0, 0, 255)}
+        )
+    end
+})
+
+NTab:AddButton({
+    Name = "万圣节1🎃",
+    Desc = "播放万圣节音乐并复制ID",
+    Callback = function()
+        local sound = Instance.new("Sound")
+        sound.SoundId = "rbxassetid://1837467198"
+        sound.Parent = game.Workspace
+        sound:Play()
+        setclipboard("1837457198")
+        Notification:Notify(
+            {Title = "帝脚本中心", Description = "已复制到粘贴板..."},
+            {OutlineColor = Color3.fromRGB(255, 0, 0), Time = 5, Type = "image"},
+            {Image = "http://www.roblox.com/asset/?id=7733747106", ImageColor = Color3.fromRGB(0, 0, 255)}
+        )
+    end
+})
+
+NTab:AddButton({
+    Name = "好听的",
+    Desc = "播放好听的音乐并复制ID",
+    Callback = function()
+        local sound = Instance.new("Sound")
+        sound.SoundId = "rbxassetid://1844125168"
+        sound.Parent = game.Workspace
+        sound:Play()
+        setclipboard("1844125168")
+        Notification:Notify(
+            {Title = "帝脚本中心", Description = "已复制到粘贴板..."},
+            {OutlineColor = Color3.fromRGB(255, 0, 0), Time = 5, Type = "image"},
+            {Image = "http://www.roblox.com/asset/?id=7733747106", ImageColor = Color3.fromRGB(0, 0, 255)}
+        )
+    end
+})
+
+NTab:AddButton({
+    Name = "国外音乐脚本",
+    Desc = "加载国外音乐脚本",
+    Callback = function()
+        loadstring(game:HttpGet(('https://pastebin.com/raw/g97RafnE'), true))()
+    end
+})
+
+NTab:AddButton({
+    Name = "国歌[Krx版]",
+    Desc = "播放国歌[Krx版]",
+    Callback = function()
+        local sound = Instance.new("Sound")
+        sound.SoundId = "rbxassetid://1845918434"
+        sound.Parent = game.Workspace
+        sound:Play()
+    end
+})
+
+NTab:AddButton({
+    Name = "妈妈生的",
+    Desc = "播放'妈妈生的'音频",
+    Callback = function()
+        local sound = Instance.new("Sound")
+        sound.SoundId = "rbxassetid://6689498326"
+        sound.Parent = game.Workspace
+        sound:Play()
+    end
+})
+
+NTab:AddButton({
+    Name = "Music Ball-CTT",
+    Desc = "播放Music Ball-CTT音乐",
+    Callback = function()
+        local sound = Instance.new("Sound")
+        sound.SoundId = "rbxassetid://9045415830"
+        sound.Parent = game.Workspace
+        sound:Play()
+    end
+})
+
+NTab:AddButton({
+    Name = "电音",
+    Desc = "播放电音音乐",
+    Callback = function()
+        local sound = Instance.new("Sound")
+        sound.SoundId = "rbxassetid://6911766512"
+        sound.Parent = game.Workspace
+        sound:Play()
+    end
+})
+
+NTab:AddButton({
+    Name = "梗合集",
+    Desc = "播放梗合集音频",
+    Callback = function()
+        local sound = Instance.new("Sound")
+        sound.SoundId = "rbxassetid://8161248815"
+        sound.Parent = game.Workspace
+        sound:Play()
+    end
+})
+
+NTab:AddButton({
+    Name = "Its been so long",
+    Desc = "播放'Its been so long'音乐",
+    Callback = function()
+        local sound = Instance.new("Sound")
+        sound.SoundId = "rbxassetid://6913550990"
+        sound.Parent = game.Workspace
+        sound:Play()
+    end
+})
+
+NTab:AddButton({
+    Name = "Baller",
+    Desc = "播放Baller音乐",
+    Callback = function()
+        local sound = Instance.new("Sound")
+        sound.SoundId = "rbxassetid://13530439660"
+        sound.Parent = game.Workspace
+        sound:Play()
+    end
+})
+
+NTab:AddButton({
+    Name = "男娘必听",
+    Desc = "播放男娘必听音乐",
+    Callback = function()
+        local sound = Instance.new("Sound")
+        sound.SoundId = "rbxassetid://6797864253"
+        sound.Parent = game.Workspace
+        sound:Play()
+    end
+})
+
+NTab:AddButton({
+    Name = "螃蟹之舞",
+    Desc = "播放螃蟹之舞音乐",
+    Callback = function()
+        local sound = Instance.new("Sound")
+        sound.SoundId = "rbxassetid://54100886218"
+        sound.Parent = game.Workspace
+        sound:Play()
+    end
+})
+
+NTab:AddButton({
+    Name = "布鲁克林惨案",
+    Desc = "播放布鲁克林惨案音频",
+    Callback = function()
+        local sound = Instance.new("Sound")
+        sound.SoundId = "rbxassetid://6783714255"
+        sound.Parent = game.Workspace
+        sound:Play()
+    end
+})
+
+NTab:AddButton({
+    Name = "航空模拟器音乐",
+    Desc = "播放航空模拟器音乐",
+    Callback = function()
+        local sound = Instance.new("Sound")
+        sound.SoundId = "rbxassetid://1838080629"
+        sound.Parent = game.Workspace
+        sound:Play()
+    end
+})
+
+PTab = Window:MakeTab({
+  IsMobile = true,
+  Name = "罗宝",
+  Icon = "rbxassetid://4483345998"
+})
+
+PTab:AddButton({
+    Name = "10 Robux",
+    Desc = "点击获取10 Robux",
+    Callback = function()
+        game.Players.LocalPlayer:Kick('获取10Robux完成，请到通知查看')
+    end
+})
+
+PTab:AddButton({
+    Name = "20 Robux",
+    Desc = "点击获取20 Robux",
+    Callback = function()
+        game.Players.LocalPlayer:Kick('获取20Robux完成，请到通知查看')
+    end
+})
+
+PTab:AddButton({
+    Name = "50 Robux",
+    Desc = "点击获取50 Robux",
+    Callback = function()
+        game.Players.LocalPlayer:Kick('获取50Robux完成，请到通知查看')
+    end
+})
+
+PTab:AddButton({
+    Name = "100 Robux",
+    Desc = "点击获取100 Robux",
+    Callback = function()
+        game.Players.LocalPlayer:Kick('臭傻屌被骗了吧😭😰😡😂🤓🤮😒🤣😎')
+    end
+})
+
+PTab:AddTextbox({
+    Name = "自定义Robux",
+    Default = "Robux",
+    PlaceholderText = "输入Robux数量",
+    TextDisappear = true,
+    Callback = function(Value)
+        game.Players.LocalPlayer.Character.Humanoid.Health = tonumber(Value) or 100
+    end
+})
+
 CTab = Window:MakeTab({
   IsMobile = true,
   Name = "被遗弃",
@@ -2572,26 +3036,28 @@ LTab = Window:MakeTab({
   Icon = "rbxassetid://4483345998"
 })
 
-LTab:AddToggle({
-    Name = "自动刷圈",
-    Desc = "启用自动刷圈功能并解锁所有宝箱奖励",
-    Default = false,
-    Callback = function(Value)
-        autoHoop = Value
-        
-        
-        for _, v in pairs(game.ReplicatedStorage.chestRewards:GetChildren()) do
-            game.ReplicatedStorage.rEvents.checkChestRemote:InvokeServer(v.Name)
-        end
-        
-        
-        if Value then
-            AutoHoop()
-        end
+lTab:AddButton({
+    Name = "极速脚本",
+    Desc = "北极星版本",
+    Callback = function()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/BJX553/BJX/refs/heads/main/%E6%9E%81%E9%80%9F%E4%BC%A0%E5%A5%87.lua"))()
     end
 })
 
+OTab = Window:MakeTab({
+  IsMobile = true,
+  Name = "城市防御大亨",
+  Icon = "rbxassetid://4483345998"
+})
 
+OTab:AddButton({
+    Name = "无限金钱",
+    Desc = "尝试获取大量游戏货币",
+    Callback = function()
+        local args = { [1] = math.huge }
+        game:GetService("ReplicatedStorage").Knit.Services.RaidService.RF.GiveReward:InvokeServer(unpack(args))
+    end
+})
 
 local TextChatService = game:GetService("TextChatService")
 local Players = game:GetService("Players")
