@@ -1,4 +1,4 @@
-local WindUI = loadstring(game:HttpGet("https://github.com/Footagesus/WindUI/releases/latest/download/main.lua"))()
+local WindUI = loadstring(game:HttpGet("https://raw.githubusercontent.com/zilinskaslandon/-/refs/heads/main/main%EF%BC%882%EF%BC%89.lua"))()
 
 WindUI:Popup({
     Title = "欢迎使用EM_HUB",
